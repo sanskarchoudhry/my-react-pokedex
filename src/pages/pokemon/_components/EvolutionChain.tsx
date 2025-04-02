@@ -1,32 +1,20 @@
-import axios from "axios";
 import React, { useEffect, useState } from "react";
+import { fetchEvolutionChain } from "../../../services/api/pokemonService";
 
 export default function EvolutionChain({ url }: { url: string }) {
-  const [evolutionChainURL, setEvolutionChainURL] = useState<string>();
   const [evolutionChainData, setEvolutionChainData] = useState();
 
   useEffect(() => {
-    try {
-      const fetchEvolutionChainUrl = async () => {
-        const response = await axios.get(url);
-        setEvolutionChainURL(response?.data?.evolution_chain?.url);
-      };
+    const fetchEvolutionChainData = async () => {
+      const response = await fetchEvolutionChain(url);
 
-      fetchEvolutionChainUrl();
+      setEvolutionChainData(response);
+    };
 
-      const fetchEvolutionChainData = async () => {
-        if (evolutionChainURL) {
-          const response = await axios.get(evolutionChainURL);
+    fetchEvolutionChainData();
+  }, [url]);
 
-          setEvolutionChainData(response?.data);
-        }
-      };
-
-      fetchEvolutionChainData();
-    } catch (error) {
-      console.error(error);
-    }
-  }, [url, evolutionChainURL]);
+  console.log(evolutionChainData);
 
   return <div>{evolutionChainData && <div>DATA</div>}</div>;
 }

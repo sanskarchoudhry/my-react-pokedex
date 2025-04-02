@@ -42,3 +42,16 @@ export const fetchPokemonListByGeneration = async (
     throw error;
   }
 };
+
+export const fetchEvolutionChain = async (url: string) => {
+  try {
+    const response = await axiosClient.get(url);
+    const evolutionChainUrl: string = response?.data?.evolution_chain?.url;
+
+    const evolutionChainResponse = await axiosClient.get(evolutionChainUrl);
+
+    return evolutionChainResponse.data;
+  } catch (error) {
+    console.error(error);
+  }
+};
