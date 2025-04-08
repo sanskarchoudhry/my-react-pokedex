@@ -5,6 +5,7 @@ import {
   PokemonData,
 } from "../../services/api/pokemonService";
 import EvolutionChain from "./_components/EvolutionChain";
+import { getFlattenedStats } from "../../utils/flattenStatsArray";
 
 export default function PokemonPage() {
   const { name } = useParams();
@@ -22,6 +23,10 @@ export default function PokemonPage() {
 
     fetchData();
   }, [name]);
+
+  if (pokemonData) {
+    console.log(getFlattenedStats(pokemonData?.stats));
+  }
 
   return (
     <div>

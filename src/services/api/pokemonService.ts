@@ -1,6 +1,7 @@
 import { axiosClient } from ".";
 import { Type } from "../../constants/pokemonType";
-import { Ability, Species, SpriteUrl, Stat } from "../../types";
+import { Ability, Species, SpriteUrl } from "../../types";
+import { Stat } from "../../utils/flattenStatsArray";
 
 export type PokemonData = {
   base_experience: string;
