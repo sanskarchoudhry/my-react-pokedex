@@ -1,3 +1,5 @@
+import { StatValues } from "../constants/pokemonStats";
+
 export type Stat = {
   base_stat: string;
   effort: 0 | 1;
@@ -13,14 +15,6 @@ export type FlattenedStat = {
   effort: 0 | 1;
   url: string;
 };
-
-export type StatValues =
-  | "defense"
-  | "attack"
-  | "hp"
-  | "special-attack"
-  | "special-defense"
-  | "speed";
 
 export function getFlattenedStats(stats: Stat[]): FlattenedStat[] {
   const flattenedStat: FlattenedStat[] = stats.map((stat: Stat) => {

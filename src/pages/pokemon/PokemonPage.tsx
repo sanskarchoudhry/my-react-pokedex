@@ -6,6 +6,7 @@ import {
 } from "../../services/api/pokemonService";
 import EvolutionChain from "./_components/EvolutionChain";
 import { getFlattenedStats } from "../../utils/flattenStatsArray";
+import StatsWrapper from "./_components/StatsWrapper";
 
 export default function PokemonPage() {
   const { name } = useParams();
@@ -25,7 +26,7 @@ export default function PokemonPage() {
   }, [name]);
 
   if (pokemonData) {
-    console.log(getFlattenedStats(pokemonData?.stats));
+    // console.log(getFlattenedStats(pokemonData?.stats));
   }
 
   return (
@@ -42,6 +43,7 @@ export default function PokemonPage() {
             alt={pokemonData?.name}
           />
           <EvolutionChain url={pokemonData?.species?.url} />
+          <StatsWrapper stats={getFlattenedStats(pokemonData?.stats)} />
         </div>
       )}
     </div>

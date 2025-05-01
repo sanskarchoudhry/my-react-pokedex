@@ -6,15 +6,6 @@ export type Ability = {
   is_hidden: boolean;
 };
 
-export type Stat = {
-  base_stat: string;
-  effort: 0 | 1;
-  stat: {
-    name: string;
-    url: string;
-  };
-};
-
 export type SpriteUrl = {
   other: {
     "official-artwork": {

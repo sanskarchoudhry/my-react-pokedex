@@ -14,7 +14,7 @@ export default function EvolutionChain({ url }: { url: string }) {
     fetchEvolutionChainData();
   }, [url]);
 
-  // console.log(evolutionChainData);
+  console.log(evolutionChainData);
 
   return <div>{evolutionChainData && <div>DATA</div>}</div>;
 }
