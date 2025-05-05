@@ -2,6 +2,7 @@ import { axiosClient } from ".";
 import { Type } from "../../constants/pokemonType";
 import { Ability, Species, SpriteUrl } from "../../types";
 import { Stat } from "../../utils/flattenStatsArray";
+import { PokemonForm } from "../../utils/getPokemonForms";
 
 export type PokemonData = {
   base_experience: string;
@@ -52,6 +53,30 @@ export const fetchEvolutionChain = async (url: string) => {
     const evolutionChainResponse = await axiosClient.get(evolutionChainUrl);
 
     return evolutionChainResponse.data;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export type PokemonSpeciesData = {
+  id: string;
+  name: string;
+  pokedex_numbers: {
+    entry_number: string;
+    pokedex: {
+      name: string;
+      url: string;
+    };
+  }[];
+  varieties: PokemonForm;
+};
+
+export const fetchPokemonSpeciesData = async (
+  url: string
+): Promise<PokemonSpeciesData | undefined> => {
+  try {
+    const response = await axiosClient.get(url);
+    return response?.data;
   } catch (error) {
     console.error(error);
   }
