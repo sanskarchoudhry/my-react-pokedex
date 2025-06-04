@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import { getPokemonForms, PokemonForm } from "../../../utils/getPokemonForms";
+import StatsWrapper from "./StatsWrapper";
 
 function PokemonForms({ url }: { url: string }) {
   const [pokemonVarietyData, setPokemonVarietyData] = useState<PokemonForm>();
@@ -15,7 +16,22 @@ function PokemonForms({ url }: { url: string }) {
   }, [url]);
   console.log(pokemonVarietyData);
 
-  return <div>PokemonForms</div>;
+  return (
+    <div>
+      <ul>
+        {pokemonVarietyData?.map((pokemonData, index) => {
+          return (
+            <li key={index}>
+              {pokemonData.pokemon.name}
+              <div>
+                <StatsWrapper pokemonName={pokemonData.pokemon.name} />
+              </div>
+            </li>
+          );
+        })}
+      </ul>
+    </div>
+  );
 }
 
 export default PokemonForms;
