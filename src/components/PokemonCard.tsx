@@ -28,7 +28,7 @@ export default function PokemonCard({ url }: { url: string }) {
           className=" w-40 h-56 border-slate-700 border rounded-[12px] capitalize cursor-pointer"
         >
           {pokemonData?.id}
-          <a href={`/pokemon/name/${pokemonData?.name}`}>
+          <a href={`/pokemon/${pokemonData?.name}`}>
             <img
               src={
                 pokemonData?.sprites?.other?.["official-artwork"]?.front_default

@@ -31,7 +31,7 @@ export default function PokemonPage() {
   }
 
   return (
-    <div>
+    <main className="">
       {pokemonData && (
         <div className="select-none">
           <span className="">{pokemonData?.name}</span>
@@ -48,6 +48,6 @@ export default function PokemonPage() {
           {/* <StatsWrapper stats={getFlattenedStats(pokemonData?.stats)} /> */}
         </div>
       )}
-    </div>
+    </main>
   );
 }

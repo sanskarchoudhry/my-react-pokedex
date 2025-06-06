@@ -31,7 +31,7 @@ export default function HomePage() {
   }, [selectedGeneration]);
 
   return (
-    <>
+    <main className="">
       <GenerationList
         handleGeneration={handleSelectedGeneration}
         generationID={selectedGeneration}
@@ -43,6 +43,6 @@ export default function HomePage() {
             return <PokemonCard url={pokemon.url} key={index} />;
           })}
       </div>
-    </>
+    </main>
   );
 }
