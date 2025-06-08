@@ -4,6 +4,7 @@ import { fetchPokemonListByGeneration } from "../../services/api/pokemonService"
 import { generations } from "../../constants/generations";
 import { getGenerationIndex } from "../../utils";
 import PokemonCard from "../../components/PokemonCard";
+import Banner from "../../components/Banner";
 
 export type PokemonList = {
   name: string;
@@ -31,7 +32,8 @@ export default function HomePage() {
   }, [selectedGeneration]);
 
   return (
-    <main className="">
+    <main className="flex flex-col">
+      <Banner />
       <GenerationList
         handleGeneration={handleSelectedGeneration}
         generationID={selectedGeneration}

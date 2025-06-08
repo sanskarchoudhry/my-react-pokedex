@@ -12,4 +12,7 @@
 }
 @theme {
   --color-pokedex-red-primary: #e9081a;
+  --color-gray-primary: #363636;
+  --color-gray-dark: #222222;
+  --color-white-primary: #f0f0f0;
 }
