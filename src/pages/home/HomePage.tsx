@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import GenerationList from "../../components/GenerationList";
+import GenerationSiderbar from "../../components/GenerationSidebar";
 import { fetchPokemonListByGeneration } from "../../services/api/pokemonService";
 import { generations } from "../../constants/generations";
 import { getGenerationIndex } from "../../utils";
@@ -32,19 +32,21 @@ export default function HomePage() {
   }, [selectedGeneration]);
 
   return (
-    <main className="flex flex-col">
+    <main className="flex flex-col justify-center items-center">
       <Banner />
-      <GenerationList
+      {/* <section className="flex w-full justify-between"> */}
+      <GenerationSiderbar
         handleGeneration={handleSelectedGeneration}
         generationID={selectedGeneration}
       />
 
-      <div className=" grid-cols-5 grid">
+      <div className=" grid-cols-5 grid w-3/4 p-16">
         {pokemonList &&
           pokemonList.map((pokemon: PokemonList, index) => {
             return <PokemonCard url={pokemon.url} key={index} />;
           })}
       </div>
+      {/* </section> */}
     </main>
   );
 }

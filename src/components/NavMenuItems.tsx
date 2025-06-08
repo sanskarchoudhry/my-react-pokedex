@@ -15,7 +15,7 @@ function NavMenuItems() {
   return (
     // fixed top-[6.8rem]
     <nav
-      className={`bg-gray-primary flex h-12 w-4/6 rounded-[4px] ${
+      className={`bg-gray-primary flex h-12 w-4/6 rounded-[4px] shadow-[var(--drop-shadow-regular)] ${
         isSticky ? "fixed top-4 left-1/6" : "absolute left-1/6 top-[6.5rem]"
       }`}
     >
