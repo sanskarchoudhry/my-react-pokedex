@@ -9,7 +9,7 @@ export type PokemonList = {
 
 export default function HomePage() {
   return (
-    <main className="flex flex-col justify-center items-center bg-amber-500">
+    <main className="flex flex-col justify-center items-center bg-[url(/assets/images/bg-pattern.jpg)]">
       <Banner />
       {/* <section className="flex w-full justify-between"> */}
       <GenerationSidebar />

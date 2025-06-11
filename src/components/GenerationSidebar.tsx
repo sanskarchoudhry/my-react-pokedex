@@ -1,4 +1,3 @@
-import React from "react";
 import { Generation, generations } from "../constants/generations";
 
 export default function GenerationSidebar() {
