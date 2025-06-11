@@ -46,14 +46,20 @@ function PokemonCardList() {
     fetchAllGenerations();
   }, []);
 
-  // console.log(pokemonData);
-
   return (
-    <section className=" grid-cols-8 grid p-16 w-[75%] bg-white mt-12 rounded-t-[20px]">
-      {pokemonData &&
-        pokemonData.map((pokemon: PokemonListData, index) => (
+    <section className=" flex flex-col gap-4 p-16 w-[75%] bg-white mt-12 rounded-t-[20px]">
+      {pokemonData.length > 0 &&
+        pokemonData.map((data: PokemonListData, index) => (
           <div key={index}>
-            <PokemonCard url={pokemon.pokemonData.url} />
+            <div className=" mt-8">
+              <h1 className=" font-bold text-4xl">{`${data.genName} Pokémon`}</h1>
+              <div className=" grid grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 2xl:grid-cols-7">
+                {data.pokemonData.map((pokemon: PokemonList) => {
+                  return <PokemonCard url={pokemon.url} key={pokemon.name} />;
+                })}
+              </div>
+            </div>
+            <div className="w-[90%] h-0.5 bg-light-grey"></div>
           </div>
         ))}
     </section>
