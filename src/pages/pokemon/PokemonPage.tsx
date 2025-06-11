@@ -8,6 +8,7 @@ import EvolutionChain from "./_components/EvolutionChain";
 // import { getFlattenedStats } from "../../utils/flattenStatsArray";
 // import StatsWrapper from "./_components/StatsWrapper";
 import PokemonForms from "./_components/PokemonForms";
+import Banner from "../../components/Banner";
 
 export default function PokemonPage() {
   const { name } = useParams();
@@ -32,6 +33,7 @@ export default function PokemonPage() {
 
   return (
     <main className="">
+      <Banner />
       {pokemonData && (
         <div className="select-none">
           <span className="">{pokemonData?.name}</span>

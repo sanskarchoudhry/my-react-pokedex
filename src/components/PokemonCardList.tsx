@@ -41,14 +41,14 @@ function PokemonCardList() {
   }, []);
 
   return (
-    <div className=" grid-cols-8 grid w-full p-16">
+    <section className=" grid-cols-8 grid p-16 w-[75%] bg-white">
       {pokemonData &&
         pokemonData.map((pokemon: PokemonListData, index) => (
           <div key={index}>
             <PokemonCard url={pokemon.pokemonData.url} />
           </div>
         ))}
-    </div>
+    </section>
   );
 }
 

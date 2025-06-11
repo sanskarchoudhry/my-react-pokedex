@@ -34,6 +34,7 @@ export default function PokemonCard({ url }: { url: string }) {
                 pokemonData?.sprites?.other?.["official-artwork"]?.front_default
               }
               alt={`${pokemonData.name} image`}
+              className="h-24 w-24"
             />
           </a>
 
