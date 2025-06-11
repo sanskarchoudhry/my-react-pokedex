@@ -6,7 +6,8 @@ import PokemonCard from "./PokemonCard";
 
 export type PokemonListData = {
   genID: string;
-  pokemonData: PokemonList;
+  genName: string;
+  pokemonData: PokemonList[];
 };
 
 function PokemonCardList() {
@@ -23,11 +24,16 @@ function PokemonCardList() {
             generation.offset
           );
 
+          const monsList: PokemonList[] = [];
+
           data.results.forEach((pokemon: PokemonList) => {
-            results.push({
-              genID: generation.id,
-              pokemonData: pokemon,
-            });
+            monsList.push(pokemon);
+          });
+
+          results.push({
+            genID: generation.id,
+            genName: generation.name,
+            pokemonData: monsList,
           });
         }
 
@@ -40,8 +46,10 @@ function PokemonCardList() {
     fetchAllGenerations();
   }, []);
 
+  // console.log(pokemonData);
+
   return (
-    <section className=" grid-cols-8 grid p-16 w-[75%] bg-white">
+    <section className=" grid-cols-8 grid p-16 w-[75%] bg-white mt-12 rounded-t-[20px]">
       {pokemonData &&
         pokemonData.map((pokemon: PokemonListData, index) => (
           <div key={index}>
