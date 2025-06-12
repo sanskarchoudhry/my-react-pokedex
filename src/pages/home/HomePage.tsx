@@ -1,6 +1,6 @@
 import GenerationSidebar from "../../components/GenerationSidebar";
 import Banner from "../../components/Banner";
-import PokemonCardList from "../../components/PokemonCardList";
+import PokemonCardList from "./_components/PokemonCardList";
 import { useRef } from "react";
 
 export type PokemonList = {

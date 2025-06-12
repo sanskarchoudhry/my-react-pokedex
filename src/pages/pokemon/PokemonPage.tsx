@@ -27,12 +27,12 @@ export default function PokemonPage() {
     fetchData();
   }, [name]);
 
-  if (pokemonData) {
-    // console.log(getFlattenedStats(pokemonData?.stats));
-  }
+  // if (pokemonData) {
+  // console.log(getFlattenedStats(pokemonData?.stats));
+  // }
 
   return (
-    <main className="">
+    <main className="flex flex-col justify-center items-center bg-[url(/assets/images/bg-pattern.jpg)]">
       <Banner />
       {pokemonData && (
         <div className="select-none">

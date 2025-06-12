@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { axiosClient } from "../services/api";
-import { PokemonData } from "../services/api/pokemonService";
-import { formatPokemonName } from "../utils";
-import { PokemonType, Type, types } from "../constants/pokemonType";
-import { dexNumberFormatter } from "../utils/dexNumberFormatter";
+import { axiosClient } from "../../../services/api";
+import { PokemonData } from "../../../services/api/pokemonService";
+import { formatPokemonName } from "../../../utils";
+import { PokemonType, Type, types } from "../../../constants/pokemonType";
+import { dexNumberFormatter } from "../../../utils/dexNumberFormatter";
 
 export default function PokemonCard({ url }: { url: string }) {
   const [pokemonData, setPokemonData] = useState<PokemonData>();

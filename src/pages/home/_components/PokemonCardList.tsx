@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import { PokemonList } from "../pages/home/HomePage";
-import { generations } from "../constants/generations";
-import { fetchPokemonListByGeneration } from "../services/api/pokemonService";
+import { PokemonList } from "../HomePage";
+import { generations } from "../../../constants/generations";
+import { fetchPokemonListByGeneration } from "../../../services/api/pokemonService";
 import PokemonCard from "./PokemonCard";
 
 export type PokemonListData = {
