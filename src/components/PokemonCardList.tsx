@@ -56,7 +56,7 @@ function PokemonCardList({ generationRefs }: PokemonCardListProps) {
           }}
         >
           <div className="mt-8">
-            <h1 className="font-bold text-4xl">{`${data.genName} Pokémon`}</h1>
+            <h1 className="font-bold text-4xl mt-24">{`${data.genName} Pokémon`}</h1>
             <div className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 2xl:grid-cols-7">
               {data.pokemonData.map((pokemon: PokemonList) => (
                 <PokemonCard url={pokemon.url} key={pokemon.name} />

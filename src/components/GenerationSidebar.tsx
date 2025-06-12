@@ -1,7 +1,7 @@
 import { Generation, generations } from "../constants/generations";
 
 type Props = {
-  generationRefs: React.MutableRefObject<{
+  generationRefs: React.RefObject<{
     [key: string]: HTMLDivElement | null;
   }>;
 };
