@@ -5,10 +5,8 @@ import {
   PokemonData,
 } from "../../services/api/pokemonService";
 import EvolutionChain from "./_components/EvolutionChain";
-// import { getFlattenedStats } from "../../utils/flattenStatsArray";
-// import StatsWrapper from "./_components/StatsWrapper";
-import PokemonForms from "./_components/PokemonForms";
 import Banner from "../../components/Banner";
+import PokemonDetails from "./_components/PokemonDetails";
 
 export default function PokemonPage() {
   const { name } = useParams();
@@ -34,6 +32,8 @@ export default function PokemonPage() {
   return (
     <main className="flex flex-col justify-center items-center bg-[url(/assets/images/bg-pattern.jpg)]">
       <Banner />
+      {name && <PokemonDetails pokemonName={name} />}
+
       {pokemonData && (
         <div className="select-none">
           <span className="">{pokemonData?.name}</span>
@@ -45,7 +45,7 @@ export default function PokemonPage() {
             }
             alt={pokemonData?.name}
           />
-          <PokemonForms url={pokemonData?.species?.url} />
+          {/* <PokemonForms url={pokemonData?.species?.url} /> */}
           <EvolutionChain url={pokemonData?.species?.url} />
           {/* <StatsWrapper stats={getFlattenedStats(pokemonData?.stats)} /> */}
         </div>
