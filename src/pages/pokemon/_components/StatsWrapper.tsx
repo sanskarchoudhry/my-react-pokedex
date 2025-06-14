@@ -20,7 +20,7 @@ export default function StatsWrapper({ pokemonName }: { pokemonName: string }) {
     }
 
     fetchData();
-  }, []);
+  }, [pokemonName]);
 
   return (
     <div>
