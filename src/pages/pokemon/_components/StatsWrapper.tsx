@@ -2,18 +2,20 @@ import React, { useEffect, useState } from "react";
 import {
   FlattenedStat,
   getFlattenedStats,
-  Stat,
 } from "../../../utils/flattenStatsArray";
-import { fetchPokemonData } from "../../../services/api/pokemonService";
+import {
+  fetchPokemonData,
+  PokemonData,
+} from "../../../services/api/pokemonService";
 
 export default function StatsWrapper({ pokemonName }: { pokemonName: string }) {
-  const [pokemonStatData, setPokemonStatData] = useState<Stat[]>();
+  const [pokemonData, setPokemonData] = useState<PokemonData>();
 
   useEffect(() => {
     async function fetchData() {
       try {
         const data = await fetchPokemonData(void 0, pokemonName);
-        setPokemonStatData(data.stats);
+        setPokemonData(data);
       } catch (error) {
         console.error(error);
       }
@@ -24,19 +26,30 @@ export default function StatsWrapper({ pokemonName }: { pokemonName: string }) {
 
   return (
     <div>
-      {pokemonStatData &&
-        getFlattenedStats(pokemonStatData).map((stat: FlattenedStat, index) => {
-          return (
-            <ul key={index}>
-              <li>
-                <span>
-                  <a href={stat.url}>{stat.name}</a>
-                </span>
-                {stat.value}
-              </li>
-            </ul>
-          );
-        })}
+      {pokemonData && (
+        <div>
+          <img
+            src={
+              pokemonData?.sprites?.other?.["official-artwork"]?.front_default
+            }
+            alt={`${pokemonData?.name} image`}
+          />
+          {getFlattenedStats(pokemonData?.stats).map(
+            (stat: FlattenedStat, index) => {
+              return (
+                <ul key={index}>
+                  <li>
+                    <span>
+                      <a href={stat.url}>{stat.name}</a>
+                    </span>
+                    {stat.value}
+                  </li>
+                </ul>
+              );
+            }
+          )}{" "}
+        </div>
+      )}
     </div>
   );
 }

@@ -1,8 +1,5 @@
 export type Ability = {
-  ability: {
-    name: string;
-    url: string;
-  };
+  ability: NameUrl;
   is_hidden: boolean;
 };
 
@@ -14,7 +11,9 @@ export type SpriteUrl = {
   };
 };
 
-export type Species = {
+export type Species = NameUrl;
+
+export type NameUrl = {
   name: string;
   url: string;
 };

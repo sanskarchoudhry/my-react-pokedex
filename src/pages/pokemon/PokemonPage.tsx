@@ -7,6 +7,7 @@ import {
 import EvolutionChain from "./_components/EvolutionChain";
 import Banner from "../../components/Banner";
 import PokemonDetails from "./_components/PokemonDetails";
+import { flattenedPokemonMove } from "../../utils/flattenPokemonMovesArray";
 
 export default function PokemonPage() {
   const { name } = useParams();
@@ -25,9 +26,9 @@ export default function PokemonPage() {
     fetchData();
   }, [name]);
 
-  // if (pokemonData) {
-  // console.log(getFlattenedStats(pokemonData?.stats));
-  // }
+  if (pokemonData) {
+    console.log(flattenedPokemonMove(pokemonData?.moves));
+  }
 
   return (
     <main className="flex flex-col justify-center items-center bg-[url(/assets/images/bg-pattern.jpg)]">

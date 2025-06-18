@@ -1,6 +1,7 @@
 import { axiosClient } from ".";
 import { Type } from "../../constants/pokemonType";
 import { Ability, Species, SpriteUrl } from "../../types";
+import { PokemonMove } from "../../utils/flattenPokemonMovesArray";
 import { Stat } from "../../utils/flattenStatsArray";
 
 export type PokemonData = {
@@ -14,6 +15,7 @@ export type PokemonData = {
   types: Type[];
   sprites: SpriteUrl;
   species: Species;
+  moves: PokemonMove[];
 };
 
 export const fetchPokemonData = async (
