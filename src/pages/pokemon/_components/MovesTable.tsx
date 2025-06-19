@@ -1,37 +1,37 @@
-import { useEffect, useState } from "react";
-import { FlattenedPokemonMove } from "../../../utils/flattenPokemonMovesArray";
-import { VersionGroup } from "../../../constants/generations";
+import { MoveDetails } from "../../../utils/flattenPokemonMovesArray";
+import TableRow from "../../../components/TableRow";
 
-function MovesTable({
-  movesArray,
-  gameArray,
+export default function MovesTable({
+  pokeMoves,
 }: {
-  movesArray: FlattenedPokemonMove;
-  gameArray: VersionGroup[];
+  pokeMoves: MoveDetails[];
 }) {
-  const [selectedGameVersion, setSelectedGameVersion] = useState<string>(
-    gameArray[0]
-  );
-
   return (
-    <div>
-      <ul>
-        {gameArray.map((game: VersionGroup, index) => {
-          return (
-            <li
-              key={index}
-              onClick={() => {
-                setSelectedGameVersion(game);
-                console.log(movesArray[game]);
-              }}
-            >
-              {game}
-            </li>
-          );
-        })}
-      </ul>
-    </div>
+    <table>
+      <thead>
+        <tr>
+          <th>Lv</th>
+          <th>Move</th>
+          <th>Type</th>
+          <th>Category</th>
+          <th>Power</th>
+          <th>Accuracy</th>
+        </tr>
+      </thead>
+      <tbody>
+        {pokeMoves &&
+          pokeMoves
+            .filter((move) => move.learnedMethod.name === "level-up")
+            .map((move, index) => {
+              return (
+                <TableRow
+                  moveUrl={move.move.url}
+                  key={index}
+                  levelLearnedAt={move.levelLearnedAt}
+                />
+              );
+            })}
+      </tbody>
+    </table>
   );
 }
-
-export default MovesTable;
