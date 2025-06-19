@@ -6,6 +6,7 @@ import {
   PokemonForm,
 } from "../../../services/api/pokemonService";
 import StatsWrapper from "./StatsWrapper";
+import MovesWrapper from "./MovesWrapper";
 
 function PokemonDetails({ pokemonName }: { pokemonName: string }) {
   const [pokemonData, setPokemonData] = useState<PokemonData>();
@@ -32,7 +33,7 @@ function PokemonDetails({ pokemonName }: { pokemonName: string }) {
     setSelectedPokemonVariant(pokeName);
   };
 
-  console.log(pokemonData);
+  // console.log(pokemonData);
 
   return (
     <div className="flex flex-col gap-4 pt-8 p-16 w-[75%] bg-white mt-12 rounded-t-[20px] justify-center items-center">
@@ -62,6 +63,7 @@ function PokemonDetails({ pokemonName }: { pokemonName: string }) {
         <div>
           <StatsWrapper pokemonName={selectedPokemonVariant} />
         </div>
+        {pokemonData && <MovesWrapper pokeMoves={pokemonData.moves} />}
       </section>
     </div>
   );

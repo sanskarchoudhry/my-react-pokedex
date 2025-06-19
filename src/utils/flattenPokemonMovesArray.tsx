@@ -20,7 +20,7 @@ export type MoveDetails = {
   learnedMethod: NameUrl;
 };
 
-type FlattenedPokemonMove = {
+export type FlattenedPokemonMove = {
   [versionGroup in VersionGroup]?: MoveDetails[];
 };
 
@@ -61,8 +61,6 @@ export const flattenedPokemonMove = (
       });
     }
   }
-
-  console.log(flattenMovesArray);
 
   return flattenMovesArray;
 };
