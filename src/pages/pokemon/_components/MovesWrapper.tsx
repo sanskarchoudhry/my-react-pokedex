@@ -39,12 +39,14 @@ function MovesWrapper({ pokeMoves }: { pokeMoves: PokemonMove[] }) {
           })}
         </ul>
       </div>
-      <MovesDetails
-        movesArray={flattenedMoves[generationID - 1]}
-        gameArray={
-          Object.keys(flattenedMoves[generationID - 1]) as VersionGroup[]
-        }
-      />
+      {generationID && flattenedMoves[generationID - 1] && (
+        <MovesDetails
+          movesArray={flattenedMoves[generationID - 1]}
+          gameArray={
+            Object.keys(flattenedMoves[generationID - 1]) as VersionGroup[]
+          }
+        />
+      )}
     </section>
   );
 }
