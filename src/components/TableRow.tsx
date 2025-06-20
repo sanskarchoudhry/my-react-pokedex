@@ -27,13 +27,19 @@ export default function TableRow({
       <td className="p-2 capitalize">{moveData.name} </td>
       <td className="p-2 capitalize">
         <span
-          className={`text-white px-1 py-0.5 rounded-[4px]`}
+          className={`text-white text-[10px] font-semibold uppercase px-3 py-1 rounded-[4px]`}
           style={{ backgroundColor: types[moveData.type.name]?.bgColor }}
         >
           {moveData.type.name}
         </span>
       </td>
-      <td className="p-2 capitalize">{moveData.damage_class.name}</td>
+      <td className="p-2 capitalize">
+        <img
+          src={`https://img.pokemondb.net/images/icons/move-${moveData.damage_class.name}.png`}
+          alt={moveData.damage_class.name}
+          className="h-5"
+        />
+      </td>
       <td className="p-2">{moveData.power ?? "-"}</td>
       <td className="p-2">{moveData.accuracy ?? "-"}</td>
     </tr>
