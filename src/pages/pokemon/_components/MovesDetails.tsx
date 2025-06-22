@@ -24,8 +24,8 @@ function MovesDetails({
   }, [gameArray]);
 
   return (
-    <div>
-      <ul className="flex gap-2">
+    <div className="w-full">
+      <ul className="flex gap-2 border-b border-b-gray-primary/20 w-full">
         {gameArray.map((game: VersionGroup, index) => (
           <li
             key={index}
@@ -44,7 +44,5 @@ function MovesDetails({
     </div>
   );
 }
-
-// TODO : Make sure to fix the generation move bug where pokemon shouldn't be available for previous generations
 
 export default MovesDetails;

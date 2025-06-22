@@ -7,7 +7,7 @@ export default function TableRow({
   levelLearnedAt,
 }: {
   moveUrl: string;
-  levelLearnedAt: number;
+  levelLearnedAt?: number;
 }) {
   const [moveData, setMoveData] = useState<MoveData>();
 
@@ -23,7 +23,7 @@ export default function TableRow({
 
   return (
     <tr className="hover:bg-gray-50 transition-colors duration-150">
-      <td className="p-2">{levelLearnedAt}</td>
+      {levelLearnedAt && <td className="p-2">{levelLearnedAt}</td>}
       <td className="p-2 capitalize">{moveData.name} </td>
       <td className="p-2 capitalize">
         <span
