@@ -26,13 +26,13 @@ function MovesDetails({
   const currentMoves = movesArray[selectedGameVersion] as MoveDetails[];
 
   return (
-    <div className="w-full">
+    <div className="w-full mt-4">
       <ul className="flex gap-2 border-b border-b-gray-primary/20 w-full">
         {gameArray.map((game, index) => (
           <li
             key={index}
             onClick={() => setSelectedGameVersion(game)}
-            className={`cursor-pointer p-1 px-2 rounded-t-[8px] border-[0.1px] border-gray-primary/20 border-b-white ${
+            className={`cursor-pointer p-1 px-2 rounded-t-[8px] border-[0.1px] border-gray-primary/20 border-b-white z-20 ${
               game === selectedGameVersion ? "bg-white" : "bg-light-grey"
             }`}
           >
@@ -40,50 +40,55 @@ function MovesDetails({
           </li>
         ))}
       </ul>
+      <section className="flex gap-16">
+        <div className="flex flex-col">
+          <MovesTable
+            title="Moves learned by levelling up"
+            description="learns these moves while levelling up"
+            pokeMoves={currentMoves}
+            filterFn={(m) =>
+              m.learnedMethod.name === "level-up" && m.levelLearnedAt !== 0
+            }
+          />
 
-      <MovesTable
-        title="Moves learned by levelling up"
-        description="learns these moves while levelling up"
-        pokeMoves={currentMoves}
-        filterFn={(m) =>
-          m.learnedMethod.name === "level-up" && m.levelLearnedAt !== 0
-        }
-      />
+          <MovesTable
+            title="Moves learned on evolution"
+            description="learns the following moves when it evolves (regardless of level)."
+            pokeMoves={currentMoves}
+            filterFn={(m) =>
+              m.learnedMethod.name === "level-up" && m.levelLearnedAt === 0
+            }
+            showLevel={false}
+          />
 
-      <MovesTable
-        title="Moves learned on evolution"
-        description="learns the following moves when it evolves (regardless of level)."
-        pokeMoves={currentMoves}
-        filterFn={(m) =>
-          m.learnedMethod.name === "level-up" && m.levelLearnedAt === 0
-        }
-        showLevel={false}
-      />
+          <MovesTable
+            title="Egg moves"
+            description="learns the following moves via breeding or picnics"
+            pokeMoves={currentMoves}
+            filterFn={(m) => m.learnedMethod.name === "egg"}
+            showLevel={false}
+          />
 
-      <MovesTable
-        title="Moves learned by TM"
-        description="learns these moves using TMs"
-        pokeMoves={currentMoves}
-        filterFn={(m) => m.learnedMethod.name === "machine"}
-        tmColumnLabel="TM"
-        showLevel={false}
-      />
+          <MovesTable
+            title="Move tutor moves"
+            description="can be taught these attacks from move tutors"
+            pokeMoves={currentMoves}
+            filterFn={(m) => m.learnedMethod.name === "tutor"}
+            showLevel={false}
+          />
+        </div>
 
-      <MovesTable
-        title="Egg moves"
-        description="learns the following moves via breeding or picnics"
-        pokeMoves={currentMoves}
-        filterFn={(m) => m.learnedMethod.name === "egg"}
-        showLevel={false}
-      />
-
-      <MovesTable
-        title="Move tutor moves"
-        description="can be taught these attacks from move tutors"
-        pokeMoves={currentMoves}
-        filterFn={(m) => m.learnedMethod.name === "tutor"}
-        showLevel={false}
-      />
+        <div className="flex flex-col">
+          <MovesTable
+            title="Moves learned by TM"
+            description="learns these moves using TMs"
+            pokeMoves={currentMoves}
+            filterFn={(m) => m.learnedMethod.name === "machine"}
+            tmColumnLabel="TM"
+            showLevel={false}
+          />
+        </div>
+      </section>
     </div>
   );
 }
