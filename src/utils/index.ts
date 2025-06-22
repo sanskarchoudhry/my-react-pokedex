@@ -7,3 +7,8 @@ export function formatPokemonName(pokemonName: string): string {
   const formattedName = pokemonName.split("-").join(" ");
   return formattedName;
 }
+
+export function extractGenerationIDFromURL(url: string): string {
+  const parts = url.split("/").filter(Boolean);
+  return parts[parts.length - 1];
+}

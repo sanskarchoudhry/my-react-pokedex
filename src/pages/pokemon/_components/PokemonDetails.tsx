@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import {
   fetchPokemonData,
-  getPokemonForms,
+  fetchPokemonSpeciesData,
   PokemonData,
   PokemonForm,
 } from "../../../services/api/pokemonService";
@@ -13,11 +13,13 @@ function PokemonDetails({ pokemonName }: { pokemonName: string }) {
   const [pokemonFormsData, setPokemonFormsData] = useState<PokemonForm>();
   const [selectedPokemonVariant, setSelectedPokemonVariant] =
     useState<string>(pokemonName);
+  const [pokemonGenerationURL, setPokemonGenerationURL] = useState<string>();
 
   useEffect(() => {
     async function getSpeciesData() {
-      const response = await getPokemonForms(pokemonName);
-      setPokemonFormsData(response);
+      const response = await fetchPokemonSpeciesData(pokemonName);
+      setPokemonFormsData(response?.varieties);
+      setPokemonGenerationURL(response?.generation?.url);
     }
 
     async function getPokemonData() {
@@ -63,7 +65,12 @@ function PokemonDetails({ pokemonName }: { pokemonName: string }) {
         <div>
           <StatsWrapper pokemonName={selectedPokemonVariant} />
         </div>
-        {pokemonData && <MovesWrapper pokeMoves={pokemonData.moves} />}
+        {pokemonData && pokemonGenerationURL && (
+          <MovesWrapper
+            pokeMoves={pokemonData.moves}
+            pokemonGeneration={pokemonGenerationURL}
+          />
+        )}
       </section>
     </div>
   );

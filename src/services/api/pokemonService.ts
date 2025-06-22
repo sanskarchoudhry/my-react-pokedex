@@ -1,6 +1,6 @@
 import { axiosClient } from ".";
 import { Type } from "../../constants/pokemonType";
-import { Ability, Species, SpriteUrl } from "../../types";
+import { Ability, NameUrl, Species, SpriteUrl } from "../../types";
 import { PokemonMove } from "../../utils/flattenPokemonMovesArray";
 import { Stat } from "../../utils/flattenStatsArray";
 
@@ -70,6 +70,7 @@ export type PokemonSpeciesData = {
     };
   }[];
   varieties: PokemonForm;
+  generation: NameUrl;
 };
 
 export const fetchPokemonSpeciesData = async (
