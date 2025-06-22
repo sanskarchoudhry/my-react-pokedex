@@ -1,4 +1,4 @@
-import TableRow from "../../../components/TableRow";
+import TableRow from "./TableRow";
 import { MoveDetails } from "../../../utils/flattenPokemonMovesArray";
 import { useParams } from "react-router-dom";
 

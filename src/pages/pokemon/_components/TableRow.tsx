@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import { fetchMoveData, MoveData } from "../services/api/moveService";
-import { types } from "../constants/pokemonType";
+import { fetchMoveData, MoveData } from "../../../services/api/moveService";
+import { types } from "../../../constants/pokemonType";
 
 export default function TableRow({
   moveUrl,
