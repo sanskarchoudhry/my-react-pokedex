@@ -71,6 +71,15 @@ export type PokemonSpeciesData = {
   }[];
   varieties: PokemonForm;
   generation: NameUrl;
+  egg_groups: NameUrl[];
+  capture_rate: number;
+  base_happiness: number;
+  growth_rate: NameUrl;
+  hatch_counter: number;
+  genera: {
+    genus: string;
+    language: NameUrl;
+  }[];
 };
 
 export const fetchPokemonSpeciesData = async (

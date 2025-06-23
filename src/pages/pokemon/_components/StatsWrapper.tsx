@@ -25,31 +25,40 @@ export default function StatsWrapper({ pokemonName }: { pokemonName: string }) {
   }, [pokemonName]);
 
   return (
-    <div>
+    <section>
       {pokemonData && (
-        <div>
-          <img
+        <div className="flex">
+          {/* <img
             src={
               pokemonData?.sprites?.other?.["official-artwork"]?.front_default
             }
             alt={`${pokemonData?.name} image`}
-          />
-          {getFlattenedStats(pokemonData?.stats).map(
-            (stat: FlattenedStat, index) => {
-              return (
-                <ul key={index}>
-                  <li>
-                    <span>
-                      <a href={stat.url}>{stat.name}</a>
-                    </span>
-                    {stat.value}
-                  </li>
-                </ul>
-              );
-            }
-          )}{" "}
+          /> */}
+          <div className="flex flex-col">
+            <h1 className="font-bold text-4xl capitalize text-center">
+              Base Stats
+            </h1>
+            <ul>
+              {getFlattenedStats(pokemonData?.stats).map(
+                (stat: FlattenedStat, index) => {
+                  return (
+                    <li key={index} className="flex">
+                      <div>{stat.name}</div>
+                      <div>{stat.value}</div>
+                      {/* <span> */}
+                      {/* <a href={stat.url}> */}
+                      {/* {stat.name} */}
+                      {/* </a> */}
+                      {/* </span> */}
+                      {/* {stat.value} */}
+                    </li>
+                  );
+                }
+              )}{" "}
+            </ul>
+          </div>
         </div>
       )}
-    </div>
+    </section>
   );
 }

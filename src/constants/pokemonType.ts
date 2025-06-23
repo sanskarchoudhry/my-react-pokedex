@@ -1,6 +1,6 @@
 export type Type = {
   type: {
-    name: string;
+    name: PokemonType;
     url: string;
   };
 };
