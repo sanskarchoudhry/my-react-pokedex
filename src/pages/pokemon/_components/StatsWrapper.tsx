@@ -1,8 +1,5 @@
 import React, { useEffect, useState } from "react";
-import {
-  FlattenedStat,
-  getFlattenedStats,
-} from "../../../utils/flattenStatsArray";
+import { getFlattenedStats } from "../../../utils/flattenStatsArray";
 import {
   fetchPokemonData,
   PokemonData,
@@ -25,6 +22,14 @@ export default function StatsWrapper({ pokemonName }: { pokemonName: string }) {
     fetchData();
   }, [pokemonName]);
 
+  const flattenedStats = pokemonData
+    ? getFlattenedStats(pokemonData.stats)
+    : [];
+  const totalStat = flattenedStats.reduce(
+    (sum, stat) => sum + Number(stat.value),
+    0
+  );
+
   return (
     <section className="py-6 px-4 md:px-10">
       {pokemonData && (
@@ -33,35 +38,41 @@ export default function StatsWrapper({ pokemonName }: { pokemonName: string }) {
             Base Stats
           </h1>
           <ul className="space-y-4">
-            {getFlattenedStats(pokemonData.stats).map(
-              (stat: FlattenedStat, index) => {
-                const color = colorBars(Number(stat.value));
-                const widthPercent = Math.min(
-                  (Number(stat.value) / 300) * 175,
-                  100
-                );
+            {flattenedStats.map((stat, index) => {
+              const color = colorBars(Number(stat.value));
+              const widthPercent = Math.min(
+                (Number(stat.value) / 300) * 175,
+                100
+              );
 
-                return (
-                  <li key={index} className="flex items-center gap-4 w-full">
-                    <div className="capitalize w-[150px] text-gray-600 font-medium shrink-0">
-                      {stat.name}
-                    </div>
-                    <div className="text-sm font-semibold text-gray-700 w-10 shrink-0">
-                      {stat.value}
-                    </div>
-                    <div className="flex-1 h-4 bg-gray-200 rounded overflow-hidden min-w-0">
-                      <div
-                        className="h-full transition-all duration-300"
-                        style={{
-                          width: `${widthPercent}%`,
-                          backgroundColor: color,
-                        }}
-                      />
-                    </div>
-                  </li>
-                );
-              }
-            )}
+              return (
+                <li key={index} className="flex items-center gap-4 w-full">
+                  <div className="capitalize w-[150px] text-gray-600 font-medium shrink-0">
+                    {stat.name}
+                  </div>
+                  <div className="text-sm font-semibold text-gray-700 w-10 shrink-0">
+                    {stat.value}
+                  </div>
+                  <div className="flex-1 h-3 bg-gray-200 rounded overflow-hidden min-w-0">
+                    <div
+                      className="h-full transition-all duration-300"
+                      style={{
+                        width: `${widthPercent}%`,
+                        backgroundColor: color,
+                      }}
+                    />
+                  </div>
+                </li>
+              );
+            })}
+            <li className="flex items-center gap-4 w-full">
+              <div className="capitalize w-[150px] text-gray-600 font-medium shrink-0">
+                Total
+              </div>
+              <div className="text-sm font-bold text-dark-gray w-10 shrink-0">
+                {totalStat}
+              </div>
+            </li>
           </ul>
         </div>
       )}
