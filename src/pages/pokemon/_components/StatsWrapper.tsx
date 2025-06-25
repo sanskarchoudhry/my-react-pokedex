@@ -37,7 +37,7 @@ export default function StatsWrapper({ pokemonName }: { pokemonName: string }) {
               (stat: FlattenedStat, index) => {
                 const color = colorBars(Number(stat.value));
                 const widthPercent = Math.min(
-                  (Number(stat.value) / 300) * 100,
+                  (Number(stat.value) / 300) * 175,
                   100
                 );
 
