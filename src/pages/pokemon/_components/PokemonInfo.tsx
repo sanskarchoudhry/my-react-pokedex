@@ -18,9 +18,7 @@ function Section({
 }) {
   return (
     <div className="flex-1">
-      <h2 className="font-bold text-3xl capitalize mb-4 text-center">
-        {title}
-      </h2>
+      <h2 className="font-bold text-3xl capitalize mb-4">{title}</h2>
       <div className="flex flex-col gap-2">{children}</div>
     </div>
   );
