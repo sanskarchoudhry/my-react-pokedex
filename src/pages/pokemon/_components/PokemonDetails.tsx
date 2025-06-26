@@ -68,14 +68,13 @@ function PokemonDetails({ pokemonName }: { pokemonName: string }) {
       <PokemonInfo pokemonName={selectedPokemonVariant} />
 
       <StatsWrapper pokemonName={selectedPokemonVariant} />
-
+      <EvolutionChain />
       {pokemonData && pokemonGenerationURL && (
         <MovesWrapper
           pokeMoves={pokemonData.moves}
           pokemonGeneration={pokemonGenerationURL}
         />
       )}
-      <EvolutionChain />
     </div>
   );
 }
