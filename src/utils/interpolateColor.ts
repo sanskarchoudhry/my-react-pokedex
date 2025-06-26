@@ -4,5 +4,5 @@ export function colorBars(statValue: number): string {
   else if (statValue >= 90) return "#a0e616";
   else if (statValue >= 60) return "#ffdd57";
   else if (statValue >= 30) return "#ffdd57";
-  else return "#ffdd57";
+  else return "#f44240";
 }

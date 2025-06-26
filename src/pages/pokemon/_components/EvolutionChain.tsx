@@ -4,7 +4,10 @@ import {
   fetchEvolutionData,
 } from "../../../services/api/evolutionService";
 import { useParams } from "react-router-dom";
-import { flattenEvolutionTree } from "../../../utils/evolutionLine";
+import {
+  flattenEvolutionTree,
+  getEvolutionMethod,
+} from "../../../utils/evolutionLine";
 import { getIdFromUrl } from "../../../utils";
 
 export default function EvolutionChain() {
@@ -53,16 +56,10 @@ export default function EvolutionChain() {
 
                 {pokemon.evolution_details.length > 0 && (
                   <div className="text-xs text-gray-500 text-center">
-                    {pokemon.evolution_details[0].trigger.name === "use-item" &&
-                      `Use ${
-                        pokemon.evolution_details[0].item?.name ?? "item"
-                      }`}
-                    {pokemon.evolution_details[0].trigger.name === "level-up" &&
-                      `Level up ${
-                        pokemon.evolution_details[0].min_level
-                          ? `at lvl ${pokemon.evolution_details[0].min_level}`
-                          : ""
-                      }`}
+                    {getEvolutionMethod(
+                      pokemon.evolution_details[0],
+                      pokemon.name
+                    )}
                   </div>
                 )}
               </div>
