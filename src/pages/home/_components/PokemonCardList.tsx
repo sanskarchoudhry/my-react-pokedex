@@ -3,6 +3,7 @@ import { PokemonList } from "../HomePage";
 import { generations } from "../../../constants/generations";
 import { fetchPokemonListByGeneration } from "../../../services/api/pokemonService";
 import PokemonCard from "./PokemonCard";
+import { getIdFromUrl } from "../../../utils";
 
 export type PokemonListData = {
   genID: string;
@@ -59,7 +60,10 @@ function PokemonCardList({ generationRefs }: PokemonCardListProps) {
             <h1 className="font-bold text-4xl mt-24">{`${data.genName} Pokémon`}</h1>
             <div className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 2xl:grid-cols-7">
               {data.pokemonData.map((pokemon: PokemonList) => (
-                <PokemonCard url={pokemon.url} key={pokemon.name} />
+                <PokemonCard
+                  name={getIdFromUrl(pokemon.url)}
+                  key={pokemon.name}
+                />
               ))}
             </div>
           </div>

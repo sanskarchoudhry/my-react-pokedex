@@ -1,82 +1,62 @@
-import { useEffect, useState } from "react";
-import {
-  fetchPokemonData,
-  fetchPokemonSpeciesData,
-  PokemonData,
-  PokemonForm,
-} from "../../../services/api/pokemonService";
+import { useParams } from "react-router-dom";
+import { useState } from "react";
+
+import { usePokemonDetails } from "../../../hooks/usePokemonDetails";
+
 import StatsWrapper from "./StatsWrapper";
 import MovesWrapper from "./MovesWrapper";
 import PokemonInfo from "./PokemonInfo";
 import EvolutionChain from "./EvolutionChain";
 
-function PokemonDetails({ pokemonName }: { pokemonName: string }) {
-  const [pokemonData, setPokemonData] = useState<PokemonData>();
-  const [pokemonFormsData, setPokemonFormsData] = useState<PokemonForm>();
-  const [selectedPokemonVariant, setSelectedPokemonVariant] =
-    useState<string>(pokemonName);
-  const [pokemonGenerationURL, setPokemonGenerationURL] = useState<string>();
+export default function PokemonDetails() {
+  const [selectedPokemonVariant, setSelectedPokemonVariant] = useState<
+    string | null
+  >(null);
 
-  useEffect(() => {
-    async function getSpeciesData() {
-      const response = await fetchPokemonSpeciesData(pokemonName);
-      setPokemonFormsData(response?.varieties);
-      setPokemonGenerationURL(response?.generation?.url);
-    }
+  const { id } = useParams();
 
-    async function getPokemonData() {
-      const response = await fetchPokemonData(void 0, pokemonName);
-      setPokemonData(response);
-    }
+  const { pokemonData, speciesData } = usePokemonDetails(id ?? " ");
 
-    getSpeciesData();
-    getPokemonData();
-  }, []);
+  const currentVariant = selectedPokemonVariant ?? pokemonData?.name;
 
-  const handlePokemonVariantChange = (pokeName: string) => {
-    setSelectedPokemonVariant(pokeName);
-  };
+  if (!speciesData) {
+    return <div>Species</div>;
+  }
 
-  // console.log(pokemonData);
+  if (!pokemonData) return <div>Pokemon Data</div>;
+  if (speciesData && pokemonData)
+    return (
+      <div className="flex flex-col gap-4 pt-8 p-16 w-[75%] bg-white mt-12 rounded-t-[20px]">
+        <h1 className="font-bold text-4xl capitalize text-center">
+          {speciesData.name}
+        </h1>
 
-  return (
-    <div className="flex flex-col gap-4 pt-8 p-16 w-[75%] bg-white mt-12 rounded-t-[20px] ">
-      <h1 className="font-bold text-4xl capitalize text-center">
-        {pokemonName}
-      </h1>
-      <ul className="flex gap-2 border-b border-b-gray-primary/20">
-        {pokemonFormsData &&
-          pokemonFormsData?.length > 1 &&
-          pokemonFormsData?.map((pokemon, index) => {
-            return (
+        <ul className="flex gap-2 border-b border-b-gray-primary/20">
+          {speciesData?.varieties?.length > 1 &&
+            speciesData.varieties.map((variant, index) => (
               <li
-                onClick={() => {
-                  handlePokemonVariantChange(pokemon.pokemon.name);
-                }}
                 key={index}
+                onClick={() => setSelectedPokemonVariant(variant.pokemon.name)}
                 className={`cursor-pointer p-1 px-2 rounded-t-[8px] border-[0.1px] border-gray-primary/20 border-b-white ${
-                  pokemon.pokemon.name === selectedPokemonVariant
+                  variant.pokemon.name === currentVariant
                     ? "bg-white"
                     : "bg-light-grey"
-                } `}
+                }`}
               >
-                {pokemon.pokemon.name}
+                {variant.pokemon.name}
               </li>
-            );
-          })}
-      </ul>
-      <PokemonInfo pokemonName={selectedPokemonVariant} />
+            ))}
+        </ul>
 
-      <StatsWrapper pokemonName={selectedPokemonVariant} />
-      <EvolutionChain />
-      {pokemonData && pokemonGenerationURL && (
-        <MovesWrapper
-          pokeMoves={pokemonData.moves}
-          pokemonGeneration={pokemonGenerationURL}
-        />
-      )}
-    </div>
-  );
+        <PokemonInfo pokemonName={currentVariant!} />
+        <StatsWrapper pokemonName={currentVariant!} />
+        <EvolutionChain />
+        {pokemonData.moves && speciesData.generation?.url && (
+          <MovesWrapper
+            pokeMoves={pokemonData.moves}
+            pokemonGeneration={speciesData.generation.url}
+          />
+        )}
+      </div>
+    );
 }
-
-export default PokemonDetails;

@@ -19,11 +19,10 @@ export type PokemonData = {
 };
 
 export const fetchPokemonData = async (
-  id?: number,
-  name?: string
+  nameOrId: string
 ): Promise<PokemonData> => {
   try {
-    const response = await axiosClient.get(`/pokemon/${id ? id : name}`);
+    const response = await axiosClient.get(`/pokemon/${nameOrId}`);
     return response.data;
   } catch (error) {
     console.error("Error fetching Pokémon data:", error);
@@ -73,12 +72,12 @@ export type PokemonSpeciesData = {
 };
 
 export const fetchPokemonSpeciesData = async (
-  pokemonName: string
+  pokemonIdOrName: string
 ): Promise<PokemonSpeciesData | undefined> => {
   try {
-    const pokemonResponse = await fetchPokemonData(void 0, pokemonName);
-    const speciesURL = pokemonResponse?.species?.url;
-    const speciesResponse = await axiosClient.get(speciesURL);
+    const speciesResponse = await axiosClient.get(
+      `/pokemon-species/${pokemonIdOrName}`
+    );
     return speciesResponse?.data;
   } catch (error) {
     console.error(error);

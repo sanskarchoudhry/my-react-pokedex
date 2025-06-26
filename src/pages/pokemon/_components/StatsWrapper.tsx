@@ -12,7 +12,7 @@ export default function StatsWrapper({ pokemonName }: { pokemonName: string }) {
   useEffect(() => {
     async function fetchData() {
       try {
-        const data = await fetchPokemonData(undefined, pokemonName);
+        const data = await fetchPokemonData(pokemonName);
         setPokemonData(data);
       } catch (error) {
         console.error(error);
