@@ -46,19 +46,6 @@ export const fetchPokemonListByGeneration = async (
   }
 };
 
-export const fetchEvolutionChain = async (url: string) => {
-  try {
-    const response = await axiosClient.get(url);
-    const evolutionChainUrl: string = response?.data?.evolution_chain?.url;
-
-    const evolutionChainResponse = await axiosClient.get(evolutionChainUrl);
-
-    return evolutionChainResponse.data;
-  } catch (error) {
-    console.error(error);
-  }
-};
-
 export type PokemonSpeciesData = {
   id: string;
   name: string;
@@ -70,6 +57,9 @@ export type PokemonSpeciesData = {
     };
   }[];
   varieties: PokemonForm;
+  evolution_chain: {
+    url: string;
+  };
   generation: NameUrl;
   egg_groups: NameUrl[];
   capture_rate: number;

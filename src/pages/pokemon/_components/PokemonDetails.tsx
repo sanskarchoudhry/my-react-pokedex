@@ -8,6 +8,7 @@ import {
 import StatsWrapper from "./StatsWrapper";
 import MovesWrapper from "./MovesWrapper";
 import PokemonInfo from "./PokemonInfo";
+import EvolutionChain from "./EvolutionChain";
 
 function PokemonDetails({ pokemonName }: { pokemonName: string }) {
   const [pokemonData, setPokemonData] = useState<PokemonData>();
@@ -74,6 +75,7 @@ function PokemonDetails({ pokemonName }: { pokemonName: string }) {
           pokemonGeneration={pokemonGenerationURL}
         />
       )}
+      <EvolutionChain />
     </div>
   );
 }
