@@ -1,14 +1,14 @@
 import { Generation, generations } from "../constants/generations";
 
 type Props = {
-  generationRefs: React.RefObject<{
+  generationRefs?: React.RefObject<{
     [key: string]: HTMLDivElement | null;
   }>;
 };
 
 export default function GenerationSidebar({ generationRefs }: Props) {
   const handleClick = (id: string) => {
-    const target = generationRefs.current[id];
+    const target = generationRefs?.current[id];
     if (target) {
       target.scrollIntoView({ behavior: "smooth", block: "start" });
     }
