@@ -13,18 +13,18 @@ import { getIdFromUrl } from "../../../utils";
 export default function EvolutionChain() {
   const [evolutionChainData, setEvolutionChainData] =
     useState<EvolutionChainData>();
-  const { name } = useParams();
+  const { id } = useParams();
 
   useEffect(() => {
     const fetchEvolutionChainData = async () => {
-      if (name) {
-        const response = await fetchEvolutionData(name);
+      if (id) {
+        const response = await fetchEvolutionData(id);
         setEvolutionChainData(response);
       }
     };
 
     fetchEvolutionChainData();
-  }, [name]);
+  }, [id]);
 
   if (!evolutionChainData) return null;
 
@@ -50,9 +50,11 @@ export default function EvolutionChain() {
                   alt={pokemon.name}
                   className="w-20 h-20 object-contain"
                 />
-                <div className="capitalize font-semibold text-gray-700">
-                  {pokemon.name}
-                </div>
+                <a href={`/pokemon/${getIdFromUrl(pokemon.url)}`}>
+                  <div className="capitalize font-semibold text-gray-primary hover:text-link-blue hover:underline">
+                    {pokemon.name}
+                  </div>
+                </a>
 
                 {pokemon.evolution_details.length > 0 && (
                   <div className="text-xs text-gray-500 text-center">

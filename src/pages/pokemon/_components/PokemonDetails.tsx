@@ -3,51 +3,51 @@ import {
   fetchPokemonData,
   fetchPokemonSpeciesData,
   PokemonData,
-  PokemonForm,
+  PokemonSpeciesData,
 } from "../../../services/api/pokemonService";
 import StatsWrapper from "./StatsWrapper";
 import MovesWrapper from "./MovesWrapper";
 import PokemonInfo from "./PokemonInfo";
 import EvolutionChain from "./EvolutionChain";
+import { useParams } from "react-router-dom";
 
 function PokemonDetails({ pokemonName }: { pokemonName: string }) {
+  const { id } = useParams();
   const [pokemonData, setPokemonData] = useState<PokemonData>();
-  const [pokemonFormsData, setPokemonFormsData] = useState<PokemonForm>();
-  const [selectedPokemonVariant, setSelectedPokemonVariant] =
-    useState<string>(pokemonName);
-  const [pokemonGenerationURL, setPokemonGenerationURL] = useState<string>();
+  const [pokemonSpeciesData, setPokemonSpeciesData] =
+    useState<PokemonSpeciesData>();
+  const [selectedPokemonVariant, setSelectedPokemonVariant] = useState<string>(
+    () => pokemonName
+  );
 
   useEffect(() => {
     async function getSpeciesData() {
-      const response = await fetchPokemonSpeciesData(pokemonName);
-      setPokemonFormsData(response?.varieties);
-      setPokemonGenerationURL(response?.generation?.url);
+      const response = await fetchPokemonSpeciesData(id ?? " ");
+      setPokemonSpeciesData(response);
     }
 
     async function getPokemonData() {
-      const response = await fetchPokemonData(void 0, pokemonName);
+      const response = await fetchPokemonData(selectedPokemonVariant);
       setPokemonData(response);
     }
 
     getSpeciesData();
     getPokemonData();
-  }, []);
+  }, [selectedPokemonVariant]);
 
   const handlePokemonVariantChange = (pokeName: string) => {
     setSelectedPokemonVariant(pokeName);
   };
 
-  // console.log(pokemonData);
-
   return (
     <div className="flex flex-col gap-4 pt-8 p-16 w-[75%] bg-white mt-12 rounded-t-[20px] ">
       <h1 className="font-bold text-4xl capitalize text-center">
-        {pokemonName}
+        {pokemonSpeciesData?.name}
       </h1>
       <ul className="flex gap-2 border-b border-b-gray-primary/20">
-        {pokemonFormsData &&
-          pokemonFormsData?.length > 1 &&
-          pokemonFormsData?.map((pokemon, index) => {
+        {pokemonSpeciesData?.varieties &&
+          pokemonSpeciesData?.varieties?.length > 1 &&
+          pokemonSpeciesData?.varieties?.map((pokemon, index) => {
             return (
               <li
                 onClick={() => {
@@ -69,10 +69,10 @@ function PokemonDetails({ pokemonName }: { pokemonName: string }) {
 
       <StatsWrapper pokemonName={selectedPokemonVariant} />
       <EvolutionChain />
-      {pokemonData && pokemonGenerationURL && (
+      {pokemonData && pokemonSpeciesData && (
         <MovesWrapper
           pokeMoves={pokemonData.moves}
-          pokemonGeneration={pokemonGenerationURL}
+          pokemonGeneration={pokemonSpeciesData?.generation?.url}
         />
       )}
     </div>

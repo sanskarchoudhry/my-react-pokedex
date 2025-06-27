@@ -104,7 +104,7 @@ export default function PokemonInfo({ pokemonName }: { pokemonName: string }) {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const pokemonDataResponse = await fetchPokemonData(void 0, pokemonName);
+        const pokemonDataResponse = await fetchPokemonData(pokemonName);
         const speciesURL = pokemonDataResponse?.species?.url;
         const [speciesResponse] = await Promise.all([
           axiosClient.get(speciesURL),

@@ -15,7 +15,7 @@ function MovesWrapper({
   pokeMoves: PokemonMove[];
   pokemonGeneration: string;
 }) {
-  const { name } = useParams();
+  const { id } = useParams();
   const [generationID, setGenerationID] = useState<number>(9);
 
   const handleGenerationChange = (genID: number) => {
@@ -28,7 +28,7 @@ function MovesWrapper({
   );
   return (
     <section className="">
-      <h1 className="font-bold text-4xl capitalize">Moves learned by {name}</h1>
+      <h1 className="font-bold text-4xl capitalize">Moves learned by {id}</h1>
       <div className="flex flex-row justify-center gap-16 items-center bg-link-blue/10 p-5 rounded-[4px] mt-8">
         <h3 className=" text-gray-dark text-lg font-semibold">
           For other generations:
