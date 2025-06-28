@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { fetchMoveData, MoveData } from "../../../services/api/moveService";
 import { types } from "../../../constants/pokemonType";
+import { getIdFromUrl } from "../../../utils";
 
 export default function TableRow({
   moveUrl,
@@ -13,7 +14,7 @@ export default function TableRow({
 
   useEffect(() => {
     async function fetchData() {
-      const data = await fetchMoveData(moveUrl);
+      const data = await fetchMoveData(getIdFromUrl(moveUrl));
       setMoveData(data);
     }
     fetchData();
