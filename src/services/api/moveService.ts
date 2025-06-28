@@ -6,6 +6,7 @@ export type MoveData = {
   accuracy: number;
   damage_class: NameUrl;
   name: string;
+  pp: number;
   type: {
     name: PokemonType;
     url: string;

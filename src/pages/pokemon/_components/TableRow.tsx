@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { fetchMoveData, MoveData } from "../../../services/api/moveService";
 import { types } from "../../../constants/pokemonType";
+import { getIdFromUrl } from "../../../utils";
 
 export default function TableRow({
   moveUrl,
@@ -13,7 +14,7 @@ export default function TableRow({
 
   useEffect(() => {
     async function fetchData() {
-      const data = await fetchMoveData(moveUrl);
+      const data = await fetchMoveData(getIdFromUrl(moveUrl));
       setMoveData(data);
     }
     fetchData();
@@ -24,7 +25,9 @@ export default function TableRow({
   return (
     <tr className="hover:bg-gray-50 transition-colors duration-150">
       {levelLearnedAt && <td className="p-2">{levelLearnedAt}</td>}
-      <td className="p-2 capitalize">{moveData.name} </td>
+      <td className="p-2 capitalize text-link-blue hover:underline">
+        <a href={`/move/${moveData.name}`}>{moveData.name}</a>{" "}
+      </td>
       <td className="p-2 capitalize">
         <span
           className={`text-white text-[10px] font-semibold uppercase px-3 py-1 rounded-[4px]`}

@@ -1,16 +1,5 @@
 import { NameUrl } from "../types";
 
-export type Generation = {
-  id: string;
-  limit: number;
-  offset: number;
-  title: string;
-  name: string;
-  genID: string;
-  versionGroups?: string[];
-  regionName?: NameUrl;
-};
-
 export const allGenerationList = [
   "red-blue",
   "yellow",
@@ -35,6 +24,17 @@ export const allGenerationList = [
 ] as const;
 
 export type VersionGroup = (typeof allGenerationList)[number];
+
+export type Generation = {
+  id: string;
+  limit: number;
+  offset: number;
+  title: string;
+  name: string;
+  genID: string;
+  versionGroups?: string[];
+  regionName?: NameUrl;
+};
 
 export const generations: Generation[] = [
   {

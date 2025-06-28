@@ -3,6 +3,7 @@ import ContainerWrapper from "../../components/ContainerWrapper";
 import { NameUrl } from "../../types";
 import { fetchGenerationData } from "../../services/api/generationService";
 import { useParams } from "react-router-dom";
+import MoveTable from "./components/MoveTable";
 
 function MoveGenerationPage() {
   const { genID } = useParams();
@@ -18,10 +19,19 @@ function MoveGenerationPage() {
   return (
     <ContainerWrapper>
       {movesList && (
-        <section>
-          {movesList.map((move: NameUrl, index) => {
-            return <div key={index}>{move.name}</div>;
-          })}
+        <section className="p-8 pt-16 bg-white w-[75%]">
+          <MoveTable
+            tableRows={[
+              "Name",
+              "Type",
+              "Category",
+              "Power",
+              "Accuracy",
+              "PP",
+              "effect",
+            ]}
+            moveList={movesList}
+          />
         </section>
       )}
     </ContainerWrapper>
