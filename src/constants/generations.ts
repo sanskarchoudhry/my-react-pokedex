@@ -1,16 +1,5 @@
 import { NameUrl } from "../types";
 
-// export type VersionGroup = (typeof allGenerationList)[number];
-
-export type Generation = {
-  id: string;
-  limit: number;
-  offset: number;
-  title: string;
-  name: string;
-  versionGroups: string[];
-};
-
 export const generations = [
   {
     id: "1",
@@ -18,7 +7,6 @@ export const generations = [
     offset: 0,
     title: "Gen I",
     name: "Generation 1",
-
     versionGroups: ["red-blue", "yellow"],
   },
   {
@@ -27,7 +15,6 @@ export const generations = [
     offset: 151,
     title: "Gen II",
     name: "Generation 2",
-
     versionGroups: ["gold-silver", "crystal"],
   },
   {
@@ -36,7 +23,6 @@ export const generations = [
     offset: 251,
     title: "Gen III",
     name: "Generation 3",
-
     versionGroups: ["ruby-sapphire", "emerald", "firered-leafgreen"],
   },
   {
@@ -45,7 +31,6 @@ export const generations = [
     offset: 386,
     title: "Gen IV",
     name: "Generation 4",
-
     versionGroups: ["diamond-pearl", "platinum", "heartgold-soulsilver"],
   },
   {
@@ -54,7 +39,6 @@ export const generations = [
     offset: 493,
     title: "Gen V",
     name: "Generation 5",
-
     versionGroups: ["black-white", "black-2-white-2"],
   },
   {
@@ -63,7 +47,6 @@ export const generations = [
     offset: 649,
     title: "Gen VI",
     name: "Generation 6",
-
     versionGroups: ["x-y", "omega-ruby-alpha-sapphire"],
   },
   {
@@ -72,7 +55,6 @@ export const generations = [
     offset: 721,
     title: "Gen VII",
     name: "Generation 7",
-
     versionGroups: ["sun-moon", "ultra-sun-ultra-moon"],
   },
   {
@@ -81,7 +63,6 @@ export const generations = [
     offset: 809,
     title: "Gen VIII",
     name: "Generation 8",
-
     versionGroups: [
       "sword-shield",
       "brilliant-diamond-and-shining-pearl",
@@ -94,45 +75,39 @@ export const generations = [
     offset: 905,
     title: "Gen IX",
     name: "Generation 9",
-
     versionGroups: ["scarlet-violet"],
   },
 ] as const;
 
-type ExtractVersionGroups<T> = T extends readonly {
-  versionGroups: readonly string[];
-}[]
-  ? T[number]["versionGroups"][number]
-  : never;
+export type Generation = (typeof generations)[number];
 
-export type VersionGroup = ExtractVersionGroups<typeof generations>;
+export type VersionGroup = Generation["versionGroups"][number];
 
 export type PokemonGenerations = {
   genID: string;
-  versionGroups: string[];
+  versionGroups: VersionGroup[];
   regionName: NameUrl;
 };
 
-export const versionGenerationMap: { [versionName in VersionGroup]?: string } =
-  {
-    "red-blue": "1",
-    yellow: "1",
-    "gold-silver": "2",
-    crystal: "2",
-    "ruby-sapphire": "3",
-    emerald: "3",
-    "firered-leafgreen": "3",
-    "diamond-pearl": "4",
-    platinum: "4",
-    "heartgold-soulsilver": "4",
-    "black-white": "5",
-    "black-2-white-2": "5",
-    "x-y": "6",
-    "omega-ruby-alpha-sapphire": "6",
-    "sun-moon": "7",
-    "ultra-sun-ultra-moon": "7",
-    "sword-shield": "8",
-    "brilliant-diamond-and-shining-pearl": "8",
-    "legends-arceus": "8",
-    "scarlet-violet": "9",
-  };
+export const versionGenerationMap: Record<VersionGroup, string> = {
+  "red-blue": "1",
+  yellow: "1",
+  "gold-silver": "2",
+  crystal: "2",
+  "ruby-sapphire": "3",
+  emerald: "3",
+  "firered-leafgreen": "3",
+  "diamond-pearl": "4",
+  platinum: "4",
+  "heartgold-soulsilver": "4",
+  "black-white": "5",
+  "black-2-white-2": "5",
+  "x-y": "6",
+  "omega-ruby-alpha-sapphire": "6",
+  "sun-moon": "7",
+  "ultra-sun-ultra-moon": "7",
+  "sword-shield": "8",
+  "brilliant-diamond-and-shining-pearl": "8",
+  "legends-arceus": "8",
+  "scarlet-violet": "9",
+};
