@@ -1,37 +1,33 @@
 import { axiosClient } from ".";
+import { NameUrl } from "../../types";
 import { fetchPokemonSpeciesData } from "./pokemonService";
 
 export type EvolutionChainData = {
   evolution_details: EvolutionDetail[];
   evolves_to: EvolutionChainData[];
   is_baby: boolean;
-  species: NamedAPIResource;
+  species: NameUrl;
 };
 
 export type EvolutionDetail = {
   gender: number | null;
-  held_item: NamedAPIResource | null;
-  item: NamedAPIResource | null;
-  known_move: NamedAPIResource | null;
-  known_move_type: NamedAPIResource | null;
-  location: NamedAPIResource | null;
+  held_item: NameUrl | null;
+  item: NameUrl | null;
+  known_move: NameUrl | null;
+  known_move_type: NameUrl | null;
+  location: NameUrl | null;
   min_affection: number | null;
   min_beauty: number | null;
   min_happiness: number | null;
   min_level: number | null;
   needs_overworld_rain: boolean;
-  party_species: NamedAPIResource | null;
-  party_type: NamedAPIResource | null;
+  party_species: NameUrl | null;
+  party_type: NameUrl | null;
   relative_physical_stats: number | null;
   time_of_day: string;
-  trade_species: NamedAPIResource | null;
-  trigger: NamedAPIResource;
+  trade_species: NameUrl | null;
+  trigger: NameUrl;
   turn_upside_down: boolean;
-};
-
-export type NamedAPIResource = {
-  name: string;
-  url: string;
 };
 
 export const fetchEvolutionData = async (

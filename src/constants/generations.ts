@@ -89,7 +89,7 @@ export type PokemonGenerations = {
   regionName: NameUrl;
 };
 
-export const versionGenerationMap: Record<VersionGroup, string> = {
+export const versionGenerationMap: Record<VersionGroup, Generation["id"]> = {
   "red-blue": "1",
   yellow: "1",
   "gold-silver": "2",
