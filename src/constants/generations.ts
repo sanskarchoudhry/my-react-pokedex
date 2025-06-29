@@ -1,29 +1,6 @@
 import { NameUrl } from "../types";
 
-export const allGenerationList = [
-  "red-blue",
-  "yellow",
-  "gold-silver",
-  "crystal",
-  "ruby-sapphire",
-  "emerald",
-  "sword-shield",
-  "brilliant-diamond-and-shining-pearl",
-  "legends-arceus",
-  "scarlet-violet",
-  "firered-leafgreen",
-  "diamond-pearl",
-  "platinum",
-  "heartgold-soulsilver",
-  "black-white",
-  "black-2-white-2",
-  "x-y",
-  "omega-ruby-alpha-sapphire",
-  "sun-moon",
-  "ultra-sun-ultra-moon",
-] as const;
-
-export type VersionGroup = (typeof allGenerationList)[number];
+// export type VersionGroup = (typeof allGenerationList)[number];
 
 export type Generation = {
   id: string;
@@ -31,107 +8,104 @@ export type Generation = {
   offset: number;
   title: string;
   name: string;
-  genID: string;
-  versionGroups?: string[];
-  regionName?: NameUrl;
+  versionGroups: string[];
 };
 
-export const generations: Generation[] = [
+export const generations = [
   {
-    id: "gen1",
+    id: "1",
     limit: 151,
     offset: 0,
     title: "Gen I",
     name: "Generation 1",
-    genID: "1",
+
     versionGroups: ["red-blue", "yellow"],
-    regionName: { name: "kanto", url: "https://pokeapi.co/api/v2/region/1/" },
   },
   {
-    id: "gen2",
+    id: "2",
     limit: 100,
     offset: 151,
     title: "Gen II",
     name: "Generation 2",
-    genID: "2",
+
     versionGroups: ["gold-silver", "crystal"],
-    regionName: { name: "johto", url: "https://pokeapi.co/api/v2/region/2/" },
   },
   {
-    id: "gen3",
+    id: "3",
     limit: 135,
     offset: 251,
     title: "Gen III",
     name: "Generation 3",
-    genID: "3",
+
     versionGroups: ["ruby-sapphire", "emerald", "firered-leafgreen"],
-    regionName: { name: "hoenn", url: "https://pokeapi.co/api/v2/region/3/" },
   },
   {
-    id: "gen4",
+    id: "4",
     limit: 107,
     offset: 386,
     title: "Gen IV",
     name: "Generation 4",
-    genID: "4",
+
     versionGroups: ["diamond-pearl", "platinum", "heartgold-soulsilver"],
-    regionName: { name: "sinnoh", url: "https://pokeapi.co/api/v2/region/4/" },
   },
   {
-    id: "gen5",
+    id: "5",
     limit: 156,
     offset: 493,
     title: "Gen V",
     name: "Generation 5",
-    genID: "5",
+
     versionGroups: ["black-white", "black-2-white-2"],
-    regionName: { name: "unova", url: "https://pokeapi.co/api/v2/region/5/" },
   },
   {
-    id: "gen6",
+    id: "6",
     limit: 72,
     offset: 649,
     title: "Gen VI",
     name: "Generation 6",
-    genID: "6",
+
     versionGroups: ["x-y", "omega-ruby-alpha-sapphire"],
-    regionName: { name: "kalos", url: "https://pokeapi.co/api/v2/region/6/" },
   },
   {
-    id: "gen7",
+    id: "7",
     limit: 88,
     offset: 721,
     title: "Gen VII",
     name: "Generation 7",
-    genID: "7",
+
     versionGroups: ["sun-moon", "ultra-sun-ultra-moon"],
-    regionName: { name: "alola", url: "https://pokeapi.co/api/v2/region/7/" },
   },
   {
-    id: "gen8",
+    id: "8",
     limit: 96,
     offset: 809,
     title: "Gen VIII",
     name: "Generation 8",
-    genID: "8",
+
     versionGroups: [
       "sword-shield",
       "brilliant-diamond-and-shining-pearl",
       "legends-arceus",
     ],
-    regionName: { name: "galar", url: "https://pokeapi.co/api/v2/region/8/" },
   },
   {
-    id: "gen9",
+    id: "9",
     limit: 115,
     offset: 905,
     title: "Gen IX",
     name: "Generation 9",
-    genID: "9",
+
     versionGroups: ["scarlet-violet"],
-    regionName: { name: "paldea", url: "https://pokeapi.co/api/v2/region/10/" },
   },
-];
+] as const;
+
+type ExtractVersionGroups<T> = T extends readonly {
+  versionGroups: readonly string[];
+}[]
+  ? T[number]["versionGroups"][number]
+  : never;
+
+export type VersionGroup = ExtractVersionGroups<typeof generations>;
 
 export type PokemonGenerations = {
   genID: string;

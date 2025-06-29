@@ -37,14 +37,14 @@ function MovesWrapper({
           {generations
             .filter(
               (gen) =>
-                Number(gen.genID) >=
+                Number(gen.id) >=
                 Number(extractGenerationIDFromURL(pokemonGeneration))
             )
             .map((generation, index) => {
               return (
                 <li
                   className={`cursor-pointer ${
-                    Number(generation.genID) === generationID
+                    Number(generation.id) === generationID
                       ? "text-visited-link-red underline font-semibold"
                       : "text-link-blue"
                   }  hover:font-semibold hover:underline select-none pr-2 ${
@@ -53,7 +53,7 @@ function MovesWrapper({
                   }`}
                   key={index}
                   onClick={() => {
-                    handleGenerationChange(Number(generation.genID));
+                    handleGenerationChange(Number(generation.id));
                   }}
                 >
                   {generation.title}
@@ -78,14 +78,14 @@ function MovesWrapper({
           {generations
             .filter(
               (gen) =>
-                Number(gen.genID) >=
+                Number(gen.id) >=
                 Number(extractGenerationIDFromURL(pokemonGeneration))
             )
             .map((generation, index) => {
               return (
                 <li
                   className={`cursor-pointer ${
-                    Number(generation.genID) === generationID
+                    Number(generation.id) === generationID
                       ? "text-visited-link-red underline font-semibold"
                       : "text-link-blue"
                   }  hover:font-semibold hover:underline select-none pr-2 ${
@@ -94,7 +94,7 @@ function MovesWrapper({
                   }`}
                   key={index}
                   onClick={() => {
-                    handleGenerationChange(Number(generation.genID));
+                    handleGenerationChange(Number(generation.id));
                   }}
                 >
                   {generation.title}
