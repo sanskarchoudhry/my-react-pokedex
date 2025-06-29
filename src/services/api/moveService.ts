@@ -32,6 +32,12 @@ export type MoveData = {
     min_turns: number;
     stat_chance: number;
   };
+  flavor_text_entries: {
+    flavor_text: string;
+    language: NameUrl;
+    version_group: NameUrl;
+  }[];
+  generation: NameUrl;
 };
 
 export const fetchMoveData = async (moveName?: string): Promise<MoveData> => {
