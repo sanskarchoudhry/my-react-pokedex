@@ -1,12 +1,8 @@
-<<<<<<< HEAD
-// export type VersionGroup = (typeof allGenerationList)[number];
+
 
 import { NameURL } from "@/types";
-=======
-import { NameUrl } from "../types";
 
-// export type VersionGroup = (typeof allGenerationList)[number];
->>>>>>> main
+
 
 export type Generation = {
   id: string;
@@ -96,11 +92,7 @@ export const generations = [
   },
   {
     id: "9",
-<<<<<<< HEAD
     limit: 120,
-=======
-    limit: 115,
->>>>>>> main
     offset: 905,
     title: "Gen IX",
     name: "Generation 9",
@@ -120,11 +112,7 @@ export type VersionGroup = ExtractVersionGroups<typeof generations>;
 export type PokemonGenerations = {
   genID: string;
   versionGroups: string[];
-<<<<<<< HEAD
   regionName: NameURL;
-=======
-  regionName: NameUrl;
->>>>>>> main
 };
 
 export const versionGenerationMap: { [versionName in VersionGroup]?: string } =

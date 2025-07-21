@@ -1,11 +1,6 @@
-<<<<<<< HEAD
 "use client";
 import { navItems, NavItem } from "@/constants/navItems";
 import { useState, useEffect } from "react";
-=======
-import React, { useEffect, useState } from "react";
-import { NavItem, navItems } from "../constants/navItems";
->>>>>>> main
 
 function NavMenuItems() {
   const [isSticky, setIsSticky] = useState<boolean>(false);
@@ -21,15 +16,10 @@ function NavMenuItems() {
   return (
     // fixed top-[6.8rem]
     <nav
-<<<<<<< HEAD
       className={`bg-gray-primary flex h-12 w-3/4 rounded-[4px] shadow-[var(--drop-shadow-regular)] ${
         isSticky
           ? "fixed top-4 left-[12.5%]"
           : "absolute left-[12.5%] top-[6.5rem]"
-=======
-      className={`bg-gray-primary flex h-12 w-4/6 rounded-[4px] shadow-[var(--drop-shadow-regular)] ${
-        isSticky ? "fixed top-4 left-1/6" : "absolute left-1/6 top-[6.5rem]"
->>>>>>> main
       }`}
     >
       <ul className=" flex flex-row items-center w-full">
