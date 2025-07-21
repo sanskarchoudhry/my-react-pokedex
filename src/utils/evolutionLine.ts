@@ -1,11 +1,7 @@
 import {
   EvolutionChainData,
   EvolutionDetail,
-<<<<<<< HEAD
 } from "@/services/api/server/evolutionService";
-=======
-} from "../services/api/evolutionService";
->>>>>>> main
 
 type EvolutionStage = {
   name: string;

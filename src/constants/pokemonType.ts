@@ -1,35 +1,35 @@
-<<<<<<< HEAD
+
 export const types = {
-=======
-export type Type = {
-  type: {
-    name: PokemonType;
-    url: string;
-  };
-};
+// =======
+// export type Type = {
+//   type: {
+//     name: PokemonType;
+//     url: string;
+//   };
+// };
 
-export type PokemonType =
-  | "normal"
-  | "fairy"
-  | "dark"
-  | "dragon"
-  | "ice"
-  | "psychic"
-  | "electric"
-  | "grass"
-  | "water"
-  | "fire"
-  | "steel"
-  | "ghost"
-  | "bug"
-  | "rock"
-  | "ground"
-  | "poison"
-  | "flying"
-  | "fighting";
+// export type PokemonType =
+//   | "normal"
+//   | "fairy"
+//   | "dark"
+//   | "dragon"
+//   | "ice"
+//   | "psychic"
+//   | "electric"
+//   | "grass"
+//   | "water"
+//   | "fire"
+//   | "steel"
+//   | "ghost"
+//   | "bug"
+//   | "rock"
+//   | "ground"
+//   | "poison"
+//   | "flying"
+//   | "fighting";
 
-export const types: Record<PokemonType, Type & { bgColor: string }> = {
->>>>>>> main
+// export const types: Record<PokemonType, Type & { bgColor: string }> = {
+// >>>>>>> main
   normal: {
     type: { name: "normal", url: "https://pokeapi.co/api/v2/type/1/" },
     bgColor: "#b3a69d",
@@ -110,7 +110,6 @@ export const types: Record<PokemonType, Type & { bgColor: string }> = {
   //     name: "unknown",
   //     url: "https://pokeapi.co/api/v2/type/10001/",
   //   },
-<<<<<<< HEAD
 } as const;
 
 export type PokemonType = keyof typeof types;
@@ -324,6 +323,4 @@ export const effectivenessMultiplier: Record<
     value: "4",
     bgColor: "#509806",
   },
-=======
->>>>>>> main
 };
