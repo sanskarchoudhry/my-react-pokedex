@@ -1,5 +1,4 @@
 import { axiosClient } from "..";
-import { fetchPokemonSpeciesData } from "./pokemonService";
 
 export type EvolutionChainData = {
   evolution_details: EvolutionDetail[];

@@ -3,13 +3,14 @@ import { fetchMoveData } from "@/services/api/server/moveService";
 import React from "react";
 import GameDescriptionSection from "./_components/GameDescriptionSection";
 import PokemonListGrid from "@/components/PokemonListGrid";
+import Image from "next/image";
 
 export default async function MovePage({
   params,
 }: {
-  params: {
+  params: Promise<{
     name: string;
-  };
+  }>;
 }) {
   const { name: moveName } = await params;
 
@@ -54,10 +55,12 @@ export default async function MovePage({
                 Category
               </dt>
               <dd className="w-1/2 pl-4 capitalize flex items-center gap-2">
-                <img
+                <Image
                   src={`https://img.pokemondb.net/images/icons/move-${moveData.damage_class.name}.png`}
                   alt={moveData.damage_class.name}
                   className="h-5"
+                  width={5}
+                  height={5}
                 />
                 {moveData.damage_class.name}
               </dd>
