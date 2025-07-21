@@ -4,14 +4,10 @@ import {
   effectivenessMultiplier,
   PokemonType,
   typeDefenses,
-  TypeDetail,
   types,
 } from "@/constants/pokemonType";
 import { usePokemonDetails } from "@/context/PokemonDetailsContext";
-import {
-  fetchPokemonData,
-  PokemonData,
-} from "@/services/api/server/pokemonService";
+import { fetchPokemonData } from "@/services/api/server/pokemonService";
 import { getTypeEffectiveness } from "@/utils/getTypeEffectiveness";
 import { useEffect, useState } from "react";
 

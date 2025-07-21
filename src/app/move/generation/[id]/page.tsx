@@ -6,7 +6,7 @@ import MovesListTable from "../../_components/MovesListTable";
 export default async function MoveGenerationPage({
   params,
 }: {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 }) {
   const { id } = await params;
 

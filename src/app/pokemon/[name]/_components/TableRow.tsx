@@ -2,6 +2,7 @@ import { types } from "@/constants/pokemonType";
 import { fetchMoveData, MoveData } from "@/services/api/server/moveService";
 
 import { getIdFromUrl } from "@/utils/getIdFromUrl";
+import Image from "next/image";
 import { useEffect, useState } from "react";
 
 export default function TableRow({
@@ -37,10 +38,12 @@ export default function TableRow({
         </span>
       </td>
       <td className="p-2 capitalize">
-        <img
+        <Image
           src={`https://img.pokemondb.net/images/icons/move-${moveData.damage_class.name}.png`}
           alt={moveData.damage_class.name}
           className="h-5"
+          width={5}
+          height={5}
         />
       </td>
       <td className="p-2">{moveData.power ?? "-"}</td>

@@ -7,7 +7,7 @@ import PokemonListGrid from "@/components/PokemonListGrid";
 export default async function PokemonGenerationPage({
   params,
 }: {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 }) {
   const { id } = await params;
 

@@ -2,7 +2,6 @@ import { PokemonType, types } from "@/constants/pokemonType";
 
 export default function TypeStyle({
   type,
-  url,
 }: {
   type: PokemonType;
   url?: string;

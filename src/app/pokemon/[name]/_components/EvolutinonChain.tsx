@@ -10,6 +10,7 @@ import {
   getEvolutionMethod,
 } from "@/utils/evolutionLine";
 import { getIdFromUrl } from "@/utils/getIdFromUrl";
+import Image from "next/image";
 import { useState, useEffect } from "react";
 
 export function EvolutionChain() {
@@ -45,12 +46,14 @@ export function EvolutionChain() {
                 key={pokemon.name}
                 className="flex flex-col items-center space-y-2 w-[120px]"
               >
-                <img
+                <Image
                   src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${getIdFromUrl(
                     pokemon.url
                   )}.png`}
                   alt={pokemon.name}
                   className="w-20 h-20 object-contain"
+                  height={20}
+                  width={20}
                 />
                 <a href={`/pokemon/${getIdFromUrl(pokemon.url)}`}>
                   <div className="capitalize font-semibold text-gray-primary hover:text-link-blue hover:underline">

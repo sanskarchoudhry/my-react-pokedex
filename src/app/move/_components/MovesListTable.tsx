@@ -3,6 +3,7 @@
 import TypeStyle from "@/components/TypeStyle";
 import { PokemonType, types } from "@/constants/pokemonType";
 import { MoveData } from "@/services/api/server/moveService";
+import Image from "next/image";
 import { useState } from "react";
 
 // TODO: Sorting columns
@@ -108,10 +109,12 @@ export default function MovesListTable({
                     <TypeStyle type={move.type.name} />
                   </td>
                   <td className="px-4 py-2 capitalize">
-                    <img
+                    <Image
                       src={`https://img.pokemondb.net/images/icons/move-${move.damage_class.name}.png`}
                       alt={move.damage_class.name}
                       className="h-5"
+                      width={5}
+                      height={5}
                     />
                   </td>
                   <td className="text-center font-semibold px-4 py-2 text-gray-dark">
