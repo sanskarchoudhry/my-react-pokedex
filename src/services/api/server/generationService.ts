@@ -2,7 +2,7 @@ import { axiosClient } from "..";
 import { NameURL } from "@/types";
 
 export type GenerationData = {
-  abilities: [];
+  abilities: NameURL[];
   id: number;
   main_region: NameURL;
   moves: NameURL[];
