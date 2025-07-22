@@ -41,9 +41,9 @@ export default function TableRow({
         <Image
           src={`https://img.pokemondb.net/images/icons/move-${moveData.damage_class.name}.png`}
           alt={moveData.damage_class.name}
-          className="h-5"
-          width={5}
-          height={5}
+          className="h-5 w-auto"
+          width={16}
+          height={11}
         />
       </td>
       <td className="p-2">{moveData.power ?? "-"}</td>

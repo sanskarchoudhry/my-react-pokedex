@@ -32,48 +32,55 @@ export function EvolutionChain() {
 
   return (
     <section className="px-4 py-6">
-      <h2 className="text-2xl font-bold mb-6 text-center text-gray-800">
-        Evolution Chain
-      </h2>
-      <div className="space-y-8">
-        {evolutionTree.map((stage, stageIndex) => (
-          <div
-            key={stageIndex}
-            className="flex flex-col justify-center flex-wrap gap-6"
-          >
-            {stage.map((pokemon) => (
-              <div
-                key={pokemon.name}
-                className="flex flex-col items-center space-y-2 w-[120px]"
-              >
-                <Image
-                  src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${getIdFromUrl(
-                    pokemon.url
-                  )}.png`}
-                  alt={pokemon.name}
-                  className="w-20 h-20 object-contain"
-                  height={20}
-                  width={20}
-                />
-                <a href={`/pokemon/${getIdFromUrl(pokemon.url)}`}>
-                  <div className="capitalize font-semibold text-gray-primary hover:text-link-blue hover:underline">
-                    {pokemon.name}
-                  </div>
-                </a>
+      <h2 className="text-3xl font-bold mb-6 text-gray-800">Evolution Chain</h2>
+      {evolutionTree.length <= 1 ? (
+        <p className="text-gray-primary font-semibold">
+          <strong className="capitalize text-gray-primary">
+            {speciesData.name}
+          </strong>{" "}
+          does not evolve
+        </p>
+      ) : (
+        <div className="space-y-8">
+          {evolutionTree.map((stage, stageIndex) => (
+            <div
+              key={stageIndex}
+              className="flex flex-col justify-center flex-wrap gap-6"
+            >
+              {stage.map((pokemon) => (
+                <div
+                  key={pokemon.name}
+                  className="flex flex-col items-center space-y-2 w-[120px]"
+                >
+                  <Image
+                    src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${getIdFromUrl(
+                      pokemon.url
+                    )}.png`}
+                    alt={pokemon.name}
+                    className="w-20 h-20 object-contain"
+                    height={48}
+                    width={48}
+                  />
+                  <a href={`/pokemon/${getIdFromUrl(pokemon.url)}`}>
+                    <div className="capitalize font-semibold text-gray-primary hover:text-link-blue hover:underline">
+                      {pokemon.name}
+                    </div>
+                  </a>
 
-                {pokemon.evolution_details.length > 0 && (
-                  <div className="text-xs text-gray-500 text-center">
-                    {getEvolutionMethod(
-                      pokemon.evolution_details[0],
-                      pokemon.name
-                    )}
-                  </div>
-                )}
-              </div>
-            ))}
-          </div>
-        ))}
-      </div>
+                  {pokemon.evolution_details.length > 0 && (
+                    <div className="text-xs text-gray-500 text-center">
+                      {getEvolutionMethod(
+                        pokemon.evolution_details[0],
+                        pokemon.name
+                      )}
+                    </div>
+                  )}
+                </div>
+              ))}
+            </div>
+          ))}
+        </div>
+      )}
     </section>
   );
 }

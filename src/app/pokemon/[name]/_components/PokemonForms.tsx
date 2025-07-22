@@ -46,13 +46,39 @@ export default function PokemonForms() {
       </div>
       {pokemonData && (
         <section className="flex gap-4 mt-8">
+          {/* {pokemonData?.sprites.other["official-artwork"].front_default ? ( */}
           <Image
-            src={pokemonData?.sprites.other["official-artwork"].front_default}
-            alt={pokemonData?.name}
+            src={
+              pokemonData?.sprites.other["official-artwork"].front_default ??
+              "/file.svg"
+            }
+            alt={
+              pokemonData?.sprites.other["official-artwork"].front_default ??
+              `${pokemonData.name} image not available`
+            }
             height={475}
             width={475}
-            className="w-96 h-96"
+            className={
+              pokemonData?.sprites.other["official-artwork"].front_default
+                ? "w-96 h-96"
+                : "w-72 h-72"
+            }
           />
+          {/* ) : ( */}
+          {/* <div className="h-24 w-24 cursor-pointer flex flex-col gap-2 items-center justify-center">
+              <Image
+                src={"/file.svg"}
+                alt={`${pokemonData.name} image not available`}
+                height={50}
+                width={50}
+                className="w-96 h-96"
+              />
+              <figure>
+                <strong className="text-gray-primary">No Image</strong>
+              </figure>
+            </div> */}
+          {/* )} */}
+
           <PokemonInfo speciesData={speciesData} pokemonData={pokemonData} />
         </section>
       )}

@@ -54,13 +54,13 @@ export default async function MovePage({
               <dt className="font-medium w-1/2 text-right text-gray-primary/70">
                 Category
               </dt>
-              <dd className="w-1/2 pl-4 capitalize flex items-center gap-2">
+              <dd className="w-1/2 pl-4 capitalize flex items-center gap-0.5">
                 <Image
                   src={`https://img.pokemondb.net/images/icons/move-${moveData.damage_class.name}.png`}
                   alt={moveData.damage_class.name}
-                  className="h-5"
-                  width={5}
-                  height={5}
+                  className="h-4 w-auto"
+                  width={16}
+                  height={11}
                 />
                 {moveData.damage_class.name}
               </dd>
