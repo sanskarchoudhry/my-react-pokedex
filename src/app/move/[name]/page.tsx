@@ -4,6 +4,7 @@ import React from "react";
 import GameDescriptionSection from "./_components/GameDescriptionSection";
 import PokemonListGrid from "@/components/PokemonListGrid";
 import Image from "next/image";
+import { fetchPokemonData } from "@/services/api/server/pokemonService";
 
 export default async function MovePage({
   params,
@@ -15,6 +16,23 @@ export default async function MovePage({
   const { name: moveName } = await params;
 
   const moveData = await fetchMoveData(moveName);
+
+  const learnedByPokemon = await Promise.all(
+    moveData.learned_by_pokemon.map((pokemon) => fetchPokemonData(pokemon.name))
+  );
+
+  // Step 2: Filter by version_group_details with method === 'level-up'
+  const levelUpPokemon = learnedByPokemon.filter((pokemon) =>
+    pokemon.moves.some(
+      (move) =>
+        move.move.name === moveName &&
+        move.version_group_details.some(
+          (vg) => vg.move_learn_method.name === "level-up"
+        )
+    )
+  );
+
+  console.log(levelUpPokemon);
 
   return (
     <section>
@@ -54,13 +72,13 @@ export default async function MovePage({
               <dt className="font-medium w-1/2 text-right text-gray-primary/70">
                 Category
               </dt>
-              <dd className="w-1/2 pl-4 capitalize flex items-center gap-2">
+              <dd className="w-1/2 pl-4 capitalize flex items-center gap-0.5">
                 <Image
                   src={`https://img.pokemondb.net/images/icons/move-${moveData.damage_class.name}.png`}
                   alt={moveData.damage_class.name}
-                  className="h-5"
-                  width={5}
-                  height={5}
+                  className="h-4 w-auto"
+                  width={16}
+                  height={11}
                 />
                 {moveData.damage_class.name}
               </dd>

@@ -112,9 +112,9 @@ export default function MovesListTable({
                     <Image
                       src={`https://img.pokemondb.net/images/icons/move-${move.damage_class.name}.png`}
                       alt={move.damage_class.name}
-                      className="h-5"
-                      width={5}
-                      height={5}
+                      className="h-5 w-auto"
+                      width={16}
+                      height={11}
                     />
                   </td>
                   <td className="text-center font-semibold px-4 py-2 text-gray-dark">

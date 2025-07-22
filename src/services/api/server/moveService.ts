@@ -1,6 +1,6 @@
 import { axiosClient } from "..";
 import { PokemonType } from "@/constants/pokemonType";
-import { NameURL } from "@/types";
+import { EffectEntries, FlavorTextEntries, NameURL } from "@/types";
 
 export type MoveData = {
   accuracy: number;
@@ -13,11 +13,7 @@ export type MoveData = {
     url: string;
   };
   power: number;
-  effect_entries: {
-    effect: string;
-    language: NameURL;
-    short_effect: string;
-  }[];
+  effect_entries: EffectEntries[];
   effect_chance: number;
   meta: {
     ailment: NameURL;
@@ -33,11 +29,7 @@ export type MoveData = {
     min_turns: number;
     stat_chance: number;
   };
-  flavor_text_entries: {
-    flavor_text: string;
-    language: NameURL;
-    version_group: NameURL;
-  }[];
+  flavor_text_entries: FlavorTextEntries[];
   generation: NameURL;
   learned_by_pokemon: NameURL[];
 };

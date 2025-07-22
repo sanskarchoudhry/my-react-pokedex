@@ -1,4 +1,3 @@
-
 export type NameURL = {
   name: string;
   url: string;
@@ -18,3 +17,15 @@ export type SpriteUrl = {
 };
 
 export type Species = NameURL;
+
+export type EffectEntries = {
+  effect: string;
+  language: NameURL;
+  short_effect: string;
+};
+
+export type FlavorTextEntries = {
+  flavor_text: string;
+  language: NameURL;
+  version_group: NameURL;
+};

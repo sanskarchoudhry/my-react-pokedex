@@ -16,7 +16,9 @@ export default function GameEntryWrapper({
           .map((moveDescription, index: number) => {
             return (
               <div key={index} className="flex gap-4">
-                <div>{moveDescription.version_group.name}</div>
+                <div className="w-1/5 flex justify-end">
+                  {moveDescription.version_group.name}
+                </div>
                 <div>{moveDescription.flavor_text}</div>
               </div>
             );
