@@ -2,6 +2,7 @@ import { types } from "@/constants/pokemonType";
 import { fetchMoveData, MoveData } from "@/services/api/server/moveService";
 
 import { getIdFromUrl } from "@/utils/getIdFromUrl";
+import { formatName } from "@/utils/nameFormatter";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 
@@ -27,7 +28,7 @@ export default function TableRow({
     <tr className="hover:bg-gray-50 transition-colors duration-150">
       {levelLearnedAt && <td className="p-2">{levelLearnedAt}</td>}
       <td className="p-2 capitalize text-link-blue hover:underline">
-        <a href={`/move/${moveData.name}`}>{moveData.name}</a>{" "}
+        <a href={`/move/${moveData.name}`}>{formatName(moveData.name)}</a>{" "}
       </td>
       <td className="p-2 capitalize">
         <span

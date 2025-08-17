@@ -1,6 +1,5 @@
 import { generations } from "@/constants/generations";
 import { fetchGenerationData } from "@/services/api/server/generationService";
-import { redirect } from "next/navigation";
 import AbilityTable from "./generation/_components/AbilityTable";
 
 export default async function AbilityRootPage() {

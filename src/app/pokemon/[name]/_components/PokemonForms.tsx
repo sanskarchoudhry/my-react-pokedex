@@ -8,6 +8,7 @@ import {
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { PokemonInfo } from "./PokemonInfo";
+import { formatName } from "@/utils/nameFormatter";
 
 export default function PokemonForms() {
   const { speciesData, pokemonForm, setPokemonForm } = usePokemonDetails();
@@ -39,7 +40,7 @@ export default function PokemonForms() {
                     : "bg-light-grey"
                 } `}
               >
-                {form.pokemon.name}
+                {formatName(form.pokemon.name)}
               </li>
             );
           })}

@@ -8,6 +8,7 @@ import PokemonStats from "./_components/PokemonStats";
 import { PokemonTypeDefenses } from "./_components/PokemonTypeDefenses";
 import PokemonMoves from "./_components/PokemonMoves";
 import { EvolutionChain } from "./_components/EvolutinonChain";
+import { formatName } from "@/utils/nameFormatter";
 
 export default async function PokemonPage({
   params,
@@ -30,7 +31,7 @@ export default async function PokemonPage({
           speciesData={speciesData}
         >
           <h1 className="font-bold text-4xl capitalize text-center text-gray-dark">
-            {speciesData.name}
+            {formatName(speciesData.name)}
           </h1>
 
           <PokemonForms />
