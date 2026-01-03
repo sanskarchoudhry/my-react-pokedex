@@ -58,7 +58,7 @@ export default async function MovePage({
               </dt>
               <dd className="w-1/2 pl-4">
                 <span
-                  className={`text-white text-[10px] font-semibold uppercase px-3 py-1 rounded-[4px]`}
+                  className={`text-white text-[10px] font-semibold uppercase px-3 py-1 rounded-sm`}
                   style={{
                     backgroundColor: types[moveData.type.name]?.bgColor,
                   }}
