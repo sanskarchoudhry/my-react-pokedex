@@ -1,8 +1,10 @@
 import { Ability, SpriteUrl, Species, NameURL } from "@/types";
 import { axiosClient } from "..";
-import { TypeInfo } from "@/constants/pokemonType";
-import { Stat } from "@/utils/flattenStat";
+import { PokemonType, TypeInfo } from "@/constants/pokemonType";
 import { VersionGroup } from "@/constants/generations";
+import { StatValues } from "@/constants/pokemonStats";
+import { Stat } from "@/utils/flattenStat";
+import { graphqlUrl } from "@/config/envConfig";
 
 export type PokemonMove = {
   move: NameURL;
@@ -30,6 +32,86 @@ export type PokemonData = {
   species: Species;
   moves: PokemonMove[];
 };
+
+export type MinifiedPokemon = {
+  id: string;
+  name: string;
+  types: PokemonType[];
+  stats: { name: StatValues; value: string }[];
+  sprite: string;
+};
+
+type GraphQLResponse = {
+  data: {
+    pokemon_v2_pokemon: {
+      id: number;
+      name: string;
+      pokemon_v2_pokemontypes: {
+        pokemon_v2_type: {
+          name: string;
+        };
+      }[];
+      pokemon_v2_pokemonstats: {
+        base_stat: number;
+        pokemon_v2_stat: {
+          name: string;
+        };
+      }[];
+    }[];
+  };
+};
+
+export async function fetchAllPokemonMinified(): Promise<MinifiedPokemon[]> {
+  const query = `
+    query {
+      pokemon_v2_pokemon(limit: 1000) {
+        id
+        name
+        pokemon_v2_pokemontypes {
+          pokemon_v2_type {
+            name
+          }
+        }
+        pokemon_v2_pokemonstats {
+          base_stat
+          pokemon_v2_stat {
+            name
+          }
+        }
+      }
+    }
+  `;
+
+  try {
+    const res = await fetch(graphqlUrl, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ query }),
+      cache: "force-cache",
+    });
+
+    // CAST THE RESPONSE HERE
+    const responseBody = (await res.json()) as GraphQLResponse; 
+    const { data } = responseBody;
+
+    // Now TypeScript knows exactly what 'p' is. No more 'any'.
+    return data.pokemon_v2_pokemon.map((p) => ({
+      id: p.id.toString(),
+      name: p.name,
+      types: p.pokemon_v2_pokemontypes.map(
+        (t) => t.pokemon_v2_type.name as PokemonType
+      ),
+      stats: p.pokemon_v2_pokemonstats.map((s) => ({
+        name: s.pokemon_v2_stat.name as StatValues,
+        value: s.base_stat.toString(),
+      })),
+      sprite: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${p.id}.png`,
+    }));
+  } catch (error) {
+    console.error("Error fetching GraphQL data:", error);
+    return [];
+  }
+}
 
 export const fetchPokemonData = async (
   nameOrId: string

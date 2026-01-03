@@ -4,7 +4,7 @@ import React from "react";
 
 export default function GenerationSelector({ genID }: { genID: string }) {
   return (
-    <div className="flex flex-row justify-center gap-16 items-center bg-link-blue/10 p-5 rounded-[4px] mt-8">
+    <div className="flex flex-row justify-center gap-16 items-center bg-link-blue/10 p-5 rounded-sm mt-8">
       <h3 className="text-gray-dark text-lg font-semibold">
         For other generations:
       </h3>

@@ -38,3 +38,13 @@ export const fetchMoveData = async (moveName?: string): Promise<MoveData> => {
   const response = await axiosClient.get(`/move/${moveName}`);
   return response.data;
 };
+
+export const fetchMoveList = async (limit: number, offset: number): Promise<NameURL[]> => {
+  try {
+    const response = await axiosClient.get(`/move?limit=${limit}&offset=${offset}`);
+    return response.data.results;
+  } catch (error) {
+    console.error("Error fetching move list:", error);
+    return [];
+  }
+};
